@@ -1,4 +1,4 @@
-/* * {
+const styleText = `* {
   transition: all 1s;
 }
 
@@ -42,4 +42,7 @@
 }
 .value.px {
   color: #f92772;
-} */
+}
+`;
+
+export default styleText;
