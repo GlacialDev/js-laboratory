@@ -1,6 +1,9 @@
 .Screen {
+  margin-top: 1%;
+  margin-bottom: 1%;
+  margin-left: 1%;
+
   white-space: pre-wrap;
   font-size: 14px;
   width: 96%;
-  height: 96%;
 }

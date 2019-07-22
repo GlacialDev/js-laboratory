@@ -1,8 +1,8 @@
 import React, { PureComponent } from "react";
-import "./Screen.css";
+import "./Main.css";
 import rawStyleText from "./rawStyleText";
 
-class Screen extends PureComponent {
+class Main extends PureComponent {
   screenRef = React.createRef();
 
   state = {
@@ -26,7 +26,6 @@ class Screen extends PureComponent {
     styleText = styleCurrentState.styleText;
     styleTextBuffer = styleCurrentState.styleTextBuffer;
 
-    // markupText += char;
     markupText = this.processMarkupText(markupText, char);
     await this.setState({
       styleTextBuffer,
@@ -34,8 +33,13 @@ class Screen extends PureComponent {
       markupText
     });
 
+    let _timeInterval = timeInterval;
+    if (char === "." || char === "," || char === ";") {
+      _timeInterval = timeInterval * 5;
+    }
+
     if (newCharIndex < rawStyleText.length) {
-      await new Promise(resolve => setTimeout(() => resolve(), timeInterval));
+      await new Promise(resolve => setTimeout(() => resolve(), _timeInterval));
 
       this.writeNextChar(rawStyleText, {
         charIndex: newCharIndex,
@@ -95,9 +99,10 @@ class Screen extends PureComponent {
   componentDidMount() {
     this.writeNextChar(rawStyleText, {
       charIndex: 0,
-      timeInterval: 50
+      timeInterval: 10
     });
   }
+
   componentDidUpdate() {
     let element = this.screenRef.current;
     element.scrollTop = element.scrollHeight;
@@ -119,4 +124,4 @@ function createMarkup(rawMarkup) {
   return { __html: rawMarkup };
 }
 
-export default Screen;
+export default Main;

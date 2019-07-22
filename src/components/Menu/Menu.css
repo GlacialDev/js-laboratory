@@ -1,0 +1,50 @@
+.Menu {
+  margin: 0% 1% 1% 1%;
+
+  width: 28%;
+  height: 30vh;
+  opacity: 0;
+  box-sizing: border-box;
+  background: rgb(48, 48, 48);
+  border: 1px solid #ccc;
+  box-shadow: -4px 4px 2px 0 rgba(0, 0, 0, 0.3);
+}
+
+.navList {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navItem {
+  transition: 0.3s;
+  list-style: none;
+  width: 100%;
+  flex-grow: 1;
+  border-bottom: 1px solid #ccc;
+  text-align: center;
+}
+
+.navLink:nth-last-child() {
+  border-bottom: 0px solid #ccc;
+}
+
+.navItem:hover {
+  background-color: rgb(100, 100, 100);
+}
+
+.navLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  color: white;
+  /* text-align: center; */
+}

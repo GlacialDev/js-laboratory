@@ -4,7 +4,7 @@ const rawStyleText = `/*
 ** Я подумал, что делать обычный сайт-визитку - как-то не интересно.
 ** Поэтому давайте напишем немного кода.
 **
-** Для начала анимируем... ну... всё!
+** Для начала анимируем... да вообще всё!
 */
 
 * {
@@ -19,7 +19,6 @@ const rawStyleText = `/*
   width: 100%;
   height: 100%;
   background: rgb(63, 82, 99);
-  padding: 1%;
 }
 
 .Screen {
@@ -36,7 +35,6 @@ const rawStyleText = `/*
   border: 1px solid #ccc;
   font-family: monospace;
   padding: 10px 10px 20px;
-  height: 96%;
   width: 69%;
   box-shadow: -4px 4px 2px 0 rgba(0, 0, 0, 0.3);
   outline: 0;
@@ -68,7 +66,9 @@ const rawStyleText = `/*
 ** Сейчас сделаю меню с навигацией по сайту и моими контактами.
 */
 
-
+.Menu {
+  opacity: 1;
+}
 
 `;
 
