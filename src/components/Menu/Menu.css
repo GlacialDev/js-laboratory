@@ -29,7 +29,7 @@
   text-align: center;
 }
 
-.navLink:nth-last-child() {
+.navItem:nth-last-of-type(1) {
   border-bottom: 0px solid #ccc;
 }
 
@@ -46,5 +46,4 @@
   height: 100%;
   text-decoration: none;
   color: white;
-  /* text-align: center; */
 }

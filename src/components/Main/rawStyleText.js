@@ -16,9 +16,12 @@ const rawStyleText = `/*
 */
 
 .App {
+  display: flex;
+  flex-direction: row;
   width: 100%;
   height: 100%;
   background: rgb(63, 82, 99);
+  padding: 1%;
 }
 
 .Screen {
@@ -35,6 +38,7 @@ const rawStyleText = `/*
   border: 1px solid #ccc;
   font-family: monospace;
   padding: 10px 10px 20px;
+  height: 97%;
   width: 69%;
   box-shadow: -4px 4px 2px 0 rgba(0, 0, 0, 0.3);
   outline: 0;
