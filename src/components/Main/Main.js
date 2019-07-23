@@ -99,7 +99,7 @@ class Main extends PureComponent {
   componentDidMount() {
     this.writeNextChar(rawStyleText, {
       charIndex: 0,
-      timeInterval: 50
+      timeInterval: 10
     });
   }
 

@@ -12,20 +12,20 @@ function Menu() {
           </Link>
         </li>
         <li className="navItem">
-          <Link className="navLink" to="/about">
-            Обо мне
-          </Link>
-        </li>
-        <li className="navItem">
           <Link className="navLink" to="/works">
             Мои работы
           </Link>
         </li>
         <li className="navItem">
+          <Link className="navLink" to="/about">
+            Обо мне
+          </Link>
+        </li>
+        {/* <li className="navItem">
           <Link className="navLink" to="/contacts">
             Контакты
           </Link>
-        </li>
+        </li> */}
       </ul>
     </div>
   );

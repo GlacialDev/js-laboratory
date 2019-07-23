@@ -19,7 +19,7 @@ const rawStyleText = `/*
   display: flex;
   flex-direction: row;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   background: rgb(63, 82, 99);
   padding: 1%;
 }
@@ -38,7 +38,7 @@ const rawStyleText = `/*
   border: 1px solid #ccc;
   font-family: monospace;
   padding: 10px 10px 20px;
-  height: 97%;
+  height: 97vh;
   width: 69%;
   box-shadow: -4px 4px 2px 0 rgba(0, 0, 0, 0.3);
   outline: 0;
@@ -70,10 +70,13 @@ const rawStyleText = `/*
 ** Сейчас сделаю меню с навигацией по сайту и моими контактами.
 */
 
-.Menu {
+.Sidebar {
   opacity: 1;
 }
 
+/*
+** Чувствуйте себя как дома! :)
+*/
 `;
 
 export default rawStyleText;

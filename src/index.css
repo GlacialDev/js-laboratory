@@ -1,21 +1,18 @@
 html,
 body {
   width: 100%;
-  height: 100%;
+  height: 100vh;
   margin: 0;
   overflow: hidden;
 }
 
-pre {
-  overflow: auto;
-  max-height: 90%;
-  width: 100%;
-  border-radius: 1px; /* Prevents bad clipping in Chrome */
-  margin: 0;
-  padding: 10px;
-}
-
 #root {
   width: 100%;
-  height: 100%;
+  height: 100vh;
+}
+
+*,
+*:after,
+*:before {
+  box-sizing: border-box;
 }
