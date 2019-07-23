@@ -71,12 +71,13 @@ const rawStyleText = `/*
 */
 
 .Sidebar {
+  display: flex;
   opacity: 1;
 }
 
 /*
 ** Чувствуйте себя как дома! :)
 */
-`;
+~`;
 
 export default rawStyleText;

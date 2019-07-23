@@ -6,6 +6,7 @@ const commonStyles = `.App {
 }
 
 .Sidebar {
+  display: flex;
   opacity: 1;
 }`;
 

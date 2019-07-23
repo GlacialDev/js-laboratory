@@ -5,7 +5,8 @@ import "./App.css";
 import Main from "../Main";
 import About from "../About";
 import MyWorks from "../MyWorks";
-import Sidebar from "../Sidebar";
+// import Sidebar from "../Sidebar";
+import Sidebar from "../Sidebar_v2";
 
 function App() {
   return (

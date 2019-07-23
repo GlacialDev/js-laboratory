@@ -75,6 +75,8 @@ class Main extends PureComponent {
         commentRegexp,
         '<span class="comment">$1</span>'
       );
+    } else if (char === "~") {
+      console.log("~");
     } else {
       markupText += char;
     }
