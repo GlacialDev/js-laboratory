@@ -1,15 +1,16 @@
 export default function getConsoleAnswer(incMessage) {
   let parsedInput = incMessage.split(" ");
-  switch (parsedInput[0]) {
+  let command = parsedInput[0];
+  switch (command) {
     case "help":
       return {
         author: "console",
-        text: answers[parsedInput[0]]
+        text: answers[command]
       };
     case "test":
       return {
         author: "console",
-        text: answers[parsedInput[0]]
+        text: answers[command]
       };
     default:
       return {
@@ -20,8 +21,12 @@ export default function getConsoleAnswer(incMessage) {
   }
 }
 
+const help = `Доступные команды:
+help : вывод списка доступных команд
+test : тестовая команда`;
+const test = `Тестовая команда работает`;
+
 let answers = {
-  help: `Доступные команды: help, test`,
-  test: `Тестовая команда работает`
+  help,
+  test
 };
-// export default getConsoleAnswer;

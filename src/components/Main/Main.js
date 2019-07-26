@@ -76,7 +76,7 @@ class Main extends PureComponent {
         '<span class="comment">$1</span>'
       );
     } else if (char === "~") {
-      console.log("~");
+      // console.log("~");
     } else {
       markupText += char;
     }
@@ -98,6 +98,10 @@ class Main extends PureComponent {
     };
   }
 
+  createMarkup(rawMarkup) {
+    return { __html: rawMarkup };
+  }
+
   componentDidMount() {
     this.writeNextChar(rawStyleText, {
       charIndex: 0,
@@ -114,16 +118,15 @@ class Main extends PureComponent {
     const { styleText, markupText } = this.state;
 
     return (
-      <div ref={this.screenRef} className="Screen">
+      <div ref={this.screenRef} className="Main">
         <style>{styleText}</style>
-        <div id="screen" dangerouslySetInnerHTML={createMarkup(markupText)} />
+        <div
+          id="screen"
+          dangerouslySetInnerHTML={this.createMarkup(markupText)}
+        />
       </div>
     );
   }
-}
-
-function createMarkup(rawMarkup) {
-  return { __html: rawMarkup };
 }
 
 export default Main;

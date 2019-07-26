@@ -6,5 +6,6 @@
 
   display: none;
   flex-direction: column;
+  justify-content: flex-end;
   opacity: 0;
 }

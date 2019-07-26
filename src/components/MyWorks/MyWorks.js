@@ -1,13 +1,11 @@
 import React from "react";
-import commonStyles from "../../common/commonStyles.js";
 import "./MyWorks.css";
 
-function MyWorks() {
+function MyWorks(props) {
   return (
     <div className="MyWorks">
-      {/* Костыль, который возник из-за интерактивного добавления стилей на главной */}
-      <style>{commonStyles}</style>
-      {/* Без этого костыля, если просто импортировать стили, они отображаются на главной сразу, а не в нужный момент */}
+      <style>{props.appStyle}</style>
+      <div>works</div>
     </div>
   );
 }

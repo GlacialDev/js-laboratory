@@ -53,9 +53,9 @@ class Console extends PureComponent {
       <div className="Console">
         <div className="console-window" ref={this.consoleRef}>
           {messageHistory.map((item, index) => (
-            <div className={"console-window-text-" + item.author} key={index}>
+            <pre className={"console-window-text-" + item.author} key={index}>
               {item.text}
-            </div>
+            </pre>
           ))}
         </div>
         <input

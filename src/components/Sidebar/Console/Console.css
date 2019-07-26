@@ -19,12 +19,14 @@
 }
 
 .console-window-text-console {
+  white-space: pre-wrap;
   color: rgb(125, 183, 197);
   font-size: 14px;
   margin-bottom: 5px;
 }
 
 .console-window-text-user {
+  white-space: pre-wrap;
   color: rgb(175, 160, 146);
   font-size: 14px;
   margin-bottom: 5px;

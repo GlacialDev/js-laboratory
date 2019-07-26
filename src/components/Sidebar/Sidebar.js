@@ -1,13 +1,11 @@
 import React from "react";
 import "./Sidebar.css";
-import Menu from "./Menu";
-import Contacts from "./Contacts";
+import Console from "./Console";
 
 function Sidebar() {
   return (
     <div className="Sidebar">
-      <Menu />
-      <Contacts />
+      <Console />
     </div>
   );
 }

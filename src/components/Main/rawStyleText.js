@@ -24,7 +24,7 @@ const rawStyleText = `/*
   padding: 1%;
 }
 
-.Screen {
+.Main {
   color: white;
 
   /* 

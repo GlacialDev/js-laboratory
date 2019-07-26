@@ -1,4 +1,4 @@
-const commonStyles = `.App {
+const appStyle = `.App {
   width: 100%;
   height: 100vh;
   background: rgb(63, 82, 99);
@@ -10,4 +10,4 @@ const commonStyles = `.App {
   opacity: 1;
 }`;
 
-export default commonStyles;
+export default appStyle;
