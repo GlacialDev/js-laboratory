@@ -1,10 +1,9 @@
 import React from "react";
-import "./About.css";
+import styles from "./About.module.scss";
 
-function About(props) {
+function About() {
   return (
-    <div className="About">
-      <style>{props.appStyle}</style>
+    <div className={styles.About}>
       <div>about</div>
     </div>
   );

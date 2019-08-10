@@ -1,6 +1,7 @@
 import React, { PureComponent } from "react";
 import "./Main.css";
 import rawStyleText from "./rawStyleText";
+import Sidebar from "./Sidebar";
 
 class Main extends PureComponent {
   screenRef = React.createRef();
@@ -118,12 +119,15 @@ class Main extends PureComponent {
     const { styleText, markupText } = this.state;
 
     return (
-      <div ref={this.screenRef} className="Main">
-        <style>{styleText}</style>
-        <div
-          id="screen"
-          dangerouslySetInnerHTML={this.createMarkup(markupText)}
-        />
+      <div className="Container">
+        <div ref={this.screenRef} className="Main">
+          <style>{styleText}</style>
+          <div
+            id="screen"
+            dangerouslySetInnerHTML={this.createMarkup(markupText)}
+          />
+        </div>
+        <Sidebar />
       </div>
     );
   }

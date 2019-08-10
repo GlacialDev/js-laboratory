@@ -15,7 +15,7 @@ const rawStyleText = `/*
 ** Терпение... скоро станет понятно, зачем :)
 */
 
-.App {
+.Container {
   display: flex;
   flex-direction: row;
   width: 100%;
@@ -32,14 +32,14 @@ const rawStyleText = `/*
   ** Нужно украсить рабочее место, а то грустно выглядит.
   */
 
+  height: 97vh;
+  width: 69%;
   overflow: auto;
   box-sizing: border-box;
   background: rgb(48, 48, 48);
   border: 1px solid #ccc;
   font-family: monospace;
   padding: 10px 10px 20px;
-  height: 97vh;
-  width: 69%;
   box-shadow: -4px 4px 2px 0 rgba(0, 0, 0, 0.3);
   outline: 0;
 }

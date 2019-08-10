@@ -1,10 +1,9 @@
 import React from "react";
-import "./MyWorks.css";
+import styles from "./MyWorks.module.scss";
 
-function MyWorks(props) {
+function MyWorks() {
   return (
-    <div className="MyWorks">
-      <style>{props.appStyle}</style>
+    <div className={styles.MyWorks}>
       <div>works</div>
     </div>
   );
