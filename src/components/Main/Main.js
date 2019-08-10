@@ -1,20 +1,35 @@
 import React, { PureComponent } from "react";
-import "./Main.css";
+import "./Main.scss";
 import rawStyleText from "./rawStyleText";
 import Sidebar from "./Sidebar";
 
 class Main extends PureComponent {
+  // не нашел способа лучше автоматически скроллить вниз окно с текстом
   screenRef = React.createRef();
 
   state = {
     styleTextBuffer: "",
     styleText: "",
-    markupText: ""
+    markupText: "",
+    progress: "continue"
   };
 
   async writeNextChar(rawStyleText, options) {
     let { charIndex, timeInterval } = options;
-    let { styleText, markupText, styleTextBuffer } = this.state;
+    let { styleText, markupText, styleTextBuffer, progress } = this.state;
+
+    console.log(progress);
+
+    if (progress === "pause") {
+      await new Promise(resolve => setTimeout(() => resolve(), 300));
+
+      this.writeNextChar(rawStyleText, {
+        charIndex: charIndex,
+        timeInterval
+      });
+
+      return;
+    }
 
     let newCharIndex = charIndex + 1;
     let char = rawStyleText.slice(charIndex, newCharIndex);
@@ -115,11 +130,39 @@ class Main extends PureComponent {
     element.scrollTop = element.scrollHeight;
   }
 
+  controlsClickHandler(event) {
+    let btn = event.target.classList[1];
+    console.log(btn);
+
+    if (btn === "pause" || btn === "continue") {
+      event.target.classList.toggle("pause");
+      event.target.classList.toggle("continue");
+
+      this.setState({
+        progress: btn === "pause" ? "pause" : "continue"
+      });
+    }
+  }
+
   render() {
     const { styleText, markupText } = this.state;
 
     return (
       <div className="Container">
+        <div className="Controls">
+          <div
+            className="Controls_btn pause"
+            onClick={this.controlsClickHandler.bind(this)}
+          >
+            {this.state.progress === "continue" ? "Pause" : "Continue"}
+          </div>
+          <div
+            className="Controls_btn remote"
+            onClick={this.controlsClickHandler.bind(this)}
+          >
+            Remote
+          </div>
+        </div>
         <div ref={this.screenRef} className="Main">
           <style>{styleText}</style>
           <div

@@ -1,0 +1,33 @@
+.Main {
+  white-space: pre-wrap;
+  font-size: 14px;
+  width: 96%;
+}
+
+.Container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100vh;
+  background: rgb(255, 255, 255);
+}
+
+.Controls {
+  position: absolute;
+  right: 1%;
+  display: flex;
+  flex-direction: column;
+
+  &_btn {
+    transition: 0.3s;
+    color: rgb(202, 202, 202);
+    background-color: rgb(48, 48, 48);
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: rgb(73, 73, 73);
+    }
+  }
+}

@@ -16,7 +16,6 @@ function App() {
           <Route path="/about" component={About} />
           <Route path="/works" component={MyWorks} />
         </Switch>
-        {/* <Sidebar /> */}
       </div>
     </Router>
   );
