@@ -1,0 +1,49 @@
+@import "../../common/styles/mixins.scss";
+@import "../../common/styles/variables.scss";
+
+.header {
+  width: 100%;
+  background: $main_theme_color;
+  border-bottom: rem(1px) solid rgb(200, 200, 200);
+  display: flex;
+  justify-content: center;
+}
+
+.nav {
+  width: 1100px;
+}
+
+.navList {
+  display: flex;
+  flex-direction: row;
+}
+
+.navItem {
+  position: relative;
+  padding: rem(12px);
+  margin: rem(0px) rem(8px);
+
+  &::after {
+    @include pseudo;
+    @include square(rem(6px), $main_text_color);
+    right: rem(-12px);
+    bottom: rem(18px);
+  }
+
+  &:last-child::after {
+    display: none;
+  }
+}
+
+.navLink {
+  transition: 0.3s;
+  padding: rem(12px) rem(0px);
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  color: $main_text_color;
+  text-decoration: none;
+  text-transform: uppercase;
+
+  &:hover {
+    color: $active_text_color;
+  }
+}
