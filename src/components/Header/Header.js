@@ -4,8 +4,7 @@ import { NavLink } from "react-router-dom";
 import { withRouter } from "react-router";
 
 const activeStyle = {
-  color: "#4e8839",
-  borderBottom: "2px solid #4e8839"
+  color: "#4e8839"
 };
 
 function Header({ match }) {
