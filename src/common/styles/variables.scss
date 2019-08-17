@@ -1,5 +1,9 @@
 $main_text_color: #455a64;
 $active_text_color: #4e8839;
 
-$main_theme_color: rgb(255, 255, 225);
+$main_head_color: rgb(255, 255, 225);
+$main_body_color: rgb(255, 255, 245);
 $border_color: rgb(200, 200, 200);
+
+$z-index_header: 100;
+$z-index_content: 10;

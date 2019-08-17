@@ -17,10 +17,6 @@ function Main({ match }) {
           <Route path={`${match.url}/works`} component={Works} />
           <Route path={`${match.url}/contacts`} component={Contacts} />
         </Switch>
-
-        <div className={styles.stars} />
-        <div className={styles.stars2} />
-        <div className={styles.stars3} />
       </div>
     </div>
   );

@@ -2,11 +2,12 @@
 @import "../../common/styles/variables.scss";
 
 .header {
+  z-index: $z-index_header;
   height: rem(43px);
   font-size: rem(16px);
   position: fixed;
   width: 100%;
-  background: $main_theme_color;
+  background: $main_head_color;
   border-bottom: rem(1px) solid $border_color;
   display: flex;
   justify-content: center;

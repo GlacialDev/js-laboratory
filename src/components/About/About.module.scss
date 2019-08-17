@@ -2,11 +2,90 @@
 @import "../../common/styles/variables.scss";
 
 .About {
-  border: 1px dashed red;
+  position: relative;
+  height: 100vh;
+  z-index: $z-index_content;
+  border-left: 1px solid $border_color;
+  border-right: 1px solid $border_color;
   font-size: rem(16px);
-  padding: rem(10px) rem(10px) rem(20px);
   width: 90%;
   max-width: rem(1100px);
   flex-grow: 1;
   outline: 0;
+}
+
+.sections {
+  transition: 0.3s;
+  height: 100vh;
+  width: 100%;
+}
+
+.section {
+  height: 100vh;
+  width: 100%;
+}
+
+.controls {
+  position: absolute;
+  z-index: $z-index_content;
+  padding-top: 2%;
+  top: rem(43px);
+  right: 3%;
+
+  &_list {
+    background: $main_head_color;
+    border: rem(1px) solid $border_color;
+    padding: rem(4px);
+    border-radius: rem(2px);
+  }
+
+  &_item {
+    cursor: pointer;
+    border: rem(3px) solid $main_text_color;
+    margin-top: rem(5px);
+    height: rem(20px);
+    position: relative;
+
+    &_active {
+      cursor: pointer;
+      border: rem(3px) solid $active_text_color;
+      margin-top: rem(5px);
+      height: rem(20px);
+      position: relative;
+
+      &:first-child {
+        margin-top: rem(0px);
+      }
+    }
+
+    &:first-child {
+      margin-top: rem(0px);
+    }
+  }
+}
+
+.first {
+  display: flex;
+  flex-direction: column;
+  background: $main_body_color;
+
+  &_content {
+    flex-grow: 1;
+    padding-right: 6%;
+    padding-left: 2%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &_photo {
+    border: 1px solid $border_color;
+    max-height: 80vh;
+  }
+
+  &_text {
+    height: 80vh;
+    flex-grow: 1;
+  }
 }
