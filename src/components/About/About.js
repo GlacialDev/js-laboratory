@@ -2,21 +2,7 @@ import React, { Component } from "react";
 import styles from "./About.module.scss";
 import HeaderStub from "../Header/HeaderStub";
 import avatar from "./avatar.jpg";
-import html5svg from "./svg/HTML5.svg";
-import pugsvg from "./svg/pug.svg";
-import css3svg from "./svg/CSS3.svg";
-import sasssvg from "./svg/sass.svg";
-import jssvg from "./svg/JS.svg";
-import webpacksvg from "./svg/Webpack.svg";
-import reactsvg from "./svg/react.svg";
-import reduxsvg from "./svg/redux.svg";
-import vuesvg from "./svg/Vue.svg";
-import nodesvg from "./svg/Node.svg";
-import expresssvg from "./svg/expressjs.svg";
-import mongodbsvg from "./svg/mongodb.svg";
-import gitsvg from "./svg/git.svg";
-import photoshopsvg from "./svg/photoshop.svg";
-import vscodesvg from "./svg/vscode.svg";
+import svgsprite from "./sprite.svg";
 
 class About extends Component {
   state = {
@@ -27,21 +13,21 @@ class About extends Component {
 
   isScrolling = false;
   skills = [
-    ["HTML5", html5svg],
-    ["pug", pugsvg],
-    ["CSS3", css3svg],
-    ["Sass", sasssvg],
-    ["JS ES6/7", jssvg],
-    ["Webpack", webpacksvg],
-    ["React", reactsvg],
-    ["Redux", reduxsvg],
-    ["Vue", vuesvg],
-    ["Node.js", nodesvg],
-    ["express.js", expresssvg],
-    ["MongoDB", mongodbsvg],
-    ["git", gitsvg],
-    ["VSCode", vscodesvg],
-    ["Photoshop", photoshopsvg]
+    "HTML5",
+    "pug",
+    "CSS3",
+    "Sass",
+    "JS ES7",
+    "Webpack",
+    "React",
+    "Redux",
+    "Vue",
+    "Node.js",
+    "express.js",
+    "MongoDB",
+    "git",
+    "VSCode",
+    "Photoshop"
   ];
 
   onWheel(e) {
@@ -138,12 +124,10 @@ class About extends Component {
                   <ul className={styles.first_skills_list}>
                     {this.skills.map((item, i) => (
                       <li className={styles.first_skills_item} key={i}>
-                        <img
-                          src={item[1]}
-                          className={styles.first_svg}
-                          alt={item[0]}
-                        />
-                        <div className={styles.first_svg_text}>{item[0]}</div>
+                        <svg className={styles.first_svg}>
+                          <use xlinkHref={`${svgsprite}#${item}`} />
+                        </svg>
+                        <div className={styles.first_svg_text}>{item}</div>
                       </li>
                     ))}
                   </ul>

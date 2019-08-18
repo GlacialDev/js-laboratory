@@ -107,7 +107,8 @@
   }
 
   &_svg {
-    height: rem(32px);
+    max-width: rem(48px);
+    height: rem(48px);
 
     &_text {
       padding-top: rem(3px);
