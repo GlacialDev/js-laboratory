@@ -11,10 +11,10 @@
   border-bottom: rem(1px) solid $border_color;
   display: flex;
   justify-content: center;
-
-  // [data-dark="true"] & {
-  //   filter: invert(100) hue-rotate(180deg);
-  // }
+}
+[data-theme="dark"] .header {
+  background: $main_head_color--dark;
+  border-bottom: rem(1px) solid $border_color--dark;
 }
 
 .nav {
@@ -43,6 +43,18 @@
     display: none;
   }
 }
+[data-theme="dark"] .navItem {
+  &::after {
+    @include pseudo;
+    @include square(rem(6px), $main_text_color--dark);
+    right: rem(-12px);
+    bottom: rem(18px);
+  }
+
+  &:last-child::after {
+    display: none;
+  }
+}
 
 .navLink {
   transition: 0.3s;
@@ -54,5 +66,20 @@
 
   &:hover {
     color: $active_text_color;
+  }
+
+  &_active {
+    color: $active_text_color;
+  }
+}
+[data-theme="dark"] .navLink {
+  color: $main_text_color--dark;
+
+  &:hover {
+    color: $active_text_color--dark;
+  }
+
+  &_active {
+    color: $active_text_color--dark;
   }
 }

@@ -60,6 +60,18 @@
     }
   }
 }
+[data-theme="dark"] .controls {
+  border: $border_color--dark;
+  &_list {
+    border: rem(1px) solid $border_color--dark;
+  }
+  &_item {
+    border: rem(3px) solid $border_color--dark;
+    &_active {
+      border: rem(3px) solid $main_text_color--dark;
+    }
+  }
+}
 
 .first {
   display: flex;
@@ -139,6 +151,28 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+    }
+  }
+}
+[data-theme="dark"] .first {
+  &_header_text {
+    color: $main_text_color--dark;
+
+    &::before {
+      @include pseudo();
+      border: rem(2px) solid $border_color--dark;
+      height: rem(16px);
+      margin-left: rem(-15px);
+    }
+  }
+
+  &_main_text {
+    color: $main_text_color--dark;
+  }
+
+  &_svg {
+    &_text {
+      color: $main_text_color--dark;
     }
   }
 }

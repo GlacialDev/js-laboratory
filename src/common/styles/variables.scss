@@ -1,10 +1,19 @@
+// светлая тема
 $main_text_color: #455a64;
 $active_text_color: #4e8839;
 
-// $main_head_color: rgb(240, 255, 225);
 $main_head_color: rgb(255, 255, 255);
-$main_body_color: rgb(255, 255, 245);
+$main_body_color: rgb(250, 250, 250);
 $border_color: rgb(200, 200, 200);
 
+// темная тема
+$main_text_color--dark: #e2e2e2;
+$active_text_color--dark: #4e8839;
+
+$main_head_color--dark: rgb(30, 30, 30);
+$main_body_color--dark: rgb(40, 40, 40);
+$border_color--dark: rgb(80, 80, 80);
+
+// индексы высоты
 $z-index_header: 100;
 $z-index_content: 10;
