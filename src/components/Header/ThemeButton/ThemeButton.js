@@ -1,17 +1,17 @@
 import React from "react";
 import styles from "./ThemeButton.module.scss";
-import { ThemeConsumer } from "../../../common/contexts/ThemeContext";
+import { ContextConsumer } from "../../../common/context/Context";
 
 function ThemeButton() {
   return (
-    <ThemeConsumer>
+    <ContextConsumer>
       {context => (
         <div className={styles.ThemeButton}>
           <input type="checkbox" id="themeButton" name="check" />
           <label htmlFor="themeButton" onClick={context.toggleTheme} />
         </div>
       )}
-    </ThemeConsumer>
+    </ContextConsumer>
   );
 }
 

@@ -1,7 +1,9 @@
 import React from "react";
-import styles from "./Header.module.scss";
 import { NavLink } from "react-router-dom";
 import { withRouter } from "react-router";
+import { FormattedMessage } from "react-intl";
+import styles from "./Header.module.scss";
+import LocaleButton from "./LocaleButton";
 import ThemeButton from "./ThemeButton";
 
 function Header({ match }) {
@@ -16,7 +18,7 @@ function Header({ match }) {
               className={styles.navLink}
               activeClassName={styles.navLink_active}
             >
-              Главная
+              <FormattedMessage id="header.main" />
             </NavLink>
           </li>
           <li className={styles.navItem}>
@@ -25,7 +27,7 @@ function Header({ match }) {
               className={styles.navLink}
               activeClassName={styles.navLink_active}
             >
-              Мои Работы
+              <FormattedMessage id="header.works" />
             </NavLink>
           </li>
           <li className={styles.navItem}>
@@ -34,12 +36,13 @@ function Header({ match }) {
               className={styles.navLink}
               activeClassName={styles.navLink_active}
             >
-              Контакты
+              <FormattedMessage id="header.contacts" />
             </NavLink>
           </li>
         </ul>
       </nav>
       <ThemeButton />
+      <LocaleButton />
     </div>
   );
 }

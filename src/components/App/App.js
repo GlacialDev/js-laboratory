@@ -2,10 +2,9 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Preloader from "../Preloader";
 import Main from "../Main";
-import {
-  ThemeProvider,
-  ThemeConsumer
-} from "../../common/contexts/ThemeContext";
+import { ContextProvider, ContextConsumer } from "../../common/context/Context";
+import { IntlProvider } from "react-intl";
+import messages from "../../common/messages";
 
 import "normalize.css";
 import "../../common/styles/universal.scss";
@@ -15,18 +14,23 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <ThemeProvider>
-          <ThemeConsumer>
-            {themeContext => (
-              <div className={styles.App} data-theme={themeContext.state.theme}>
-                <Switch>
-                  <Route exact path="/" component={Preloader} />
-                  <Route path="/index" component={Main} />
-                </Switch>
-              </div>
+        <ContextProvider>
+          <ContextConsumer>
+            {context => (
+              <IntlProvider
+                locale={context.state.locale}
+                messages={messages[context.state.locale]}
+              >
+                <div className={styles.App} data-theme={context.state.theme}>
+                  <Switch>
+                    <Route exact path="/" component={Preloader} />
+                    <Route path="/index" component={Main} />
+                  </Switch>
+                </div>
+              </IntlProvider>
             )}
-          </ThemeConsumer>
-        </ThemeProvider>
+          </ContextConsumer>
+        </ContextProvider>
       </Router>
     );
   }

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { FormattedMessage } from "react-intl";
 import styles from "./About.module.scss";
 import HeaderStub from "../Header/HeaderStub";
 import avatar from "./avatar.jpg";
@@ -107,18 +108,20 @@ class About extends Component {
             <div className={styles.first_content}>
               <img className={styles.first_photo} src={avatar} alt="Мое фото" />
               <div className={styles.first_text}>
-                <div className={styles.first_header_text}>Кто я?</div>
-                <div className={styles.first_main_text}>
-                  Меня зовут Клименко Иван. Я веб-разработчик из
-                  Санкт-Петербурга.
+                <div className={styles.first_header_text}>
+                  <FormattedMessage id="first.whoQuestion" />
                 </div>
-                <div className={styles.first_header_text}>Что умею?</div>
                 <div className={styles.first_main_text}>
-                  Специализируюсь на фронтенде. Однако знаком также и с
-                  бекенд-разработкой.
+                  <FormattedMessage id="first.whoAnswer" />
                 </div>
                 <div className={styles.first_header_text}>
-                  Какими технологиями владею?
+                  <FormattedMessage id="first.whatQuestion" />
+                </div>
+                <div className={styles.first_main_text}>
+                  <FormattedMessage id="first.whatAnswer" />
+                </div>
+                <div className={styles.first_header_text}>
+                  <FormattedMessage id="first.techQuestion" />
                 </div>
                 <div className={styles.first_main_text}>
                   <ul className={styles.first_skills_list}>
