@@ -1,8 +1,6 @@
 @import "../../../common/styles/mixins.scss";
 @import "../../../common/styles/variables.scss";
 
-$darkenColor: darken($active_text_color, 20%);
-
 .ThemeButton {
   border: rem(1px) solid $border_color;
   width: rem(80px);
@@ -57,5 +55,14 @@ $darkenColor: darken($active_text_color, 20%);
     &:checked + label {
       left: rem(42px);
     }
+  }
+}
+
+[data-theme="dark"] .ThemeButton {
+  border: rem(1px) solid $border_color--dark;
+
+  &:before {
+    content: "ON";
+    color: $active_text_color--dark;
   }
 }

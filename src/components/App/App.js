@@ -17,8 +17,8 @@ class App extends Component {
       <Router>
         <ThemeProvider>
           <ThemeConsumer>
-            {context => (
-              <div className={styles.App} data-theme={context.state.theme}>
+            {themeContext => (
+              <div className={styles.App} data-theme={themeContext.state.theme}>
                 <Switch>
                   <Route exact path="/" component={Preloader} />
                   <Route path="/index" component={Main} />
