@@ -4,6 +4,7 @@ import styles from "./HelloSection.module.scss";
 import rawStyleText from "./rawStyleText";
 import LocaleButton from "./LocaleButton";
 import ThemeButton from "./ThemeButton";
+import { FormattedMessage } from "react-intl";
 
 class HelloSection extends Component {
   // не нашел способа лучше автоматически скроллить вниз окно с текстом
@@ -154,7 +155,16 @@ class HelloSection extends Component {
             dangerouslySetInnerHTML={this.createMarkup(markupText)}
           />
           <div className={`${styles.hello_settings} settings`}>
+            <div className={`${styles.hello_settings_text_head} buttons`}>
+              <FormattedMessage id="hello.settings" />
+            </div>
+            <div className={`${styles.hello_settings_text} buttons`}>
+              <FormattedMessage id="hello.darkTheme" />
+            </div>
             <ThemeButton className="buttons" />
+            <div className={`${styles.hello_settings_text} buttons`}>
+              <FormattedMessage id="hello.lang" />
+            </div>
             <LocaleButton className="buttons" />
           </div>
         </div>

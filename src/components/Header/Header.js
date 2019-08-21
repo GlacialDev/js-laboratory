@@ -4,7 +4,7 @@ import { withRouter } from "react-router";
 import { FormattedMessage } from "react-intl";
 import styles from "./Header.module.scss";
 
-function Header({ match }) {
+function Header() {
   return (
     <div className={styles.header}>
       <nav className={styles.nav}>
@@ -12,7 +12,7 @@ function Header({ match }) {
           <li className={styles.navItem}>
             <NavLink
               exact
-              to={`${match.url}`}
+              to={`/`}
               className={styles.navLink}
               activeClassName={styles.navLink_active}
             >
@@ -21,7 +21,7 @@ function Header({ match }) {
           </li>
           <li className={styles.navItem}>
             <NavLink
-              to={`${match.url}/works`}
+              to={`/works`}
               className={styles.navLink}
               activeClassName={styles.navLink_active}
             >
@@ -30,7 +30,7 @@ function Header({ match }) {
           </li>
           <li className={styles.navItem}>
             <NavLink
-              to={`${match.url}/contacts`}
+              to={`/contacts`}
               className={styles.navLink}
               activeClassName={styles.navLink_active}
             >

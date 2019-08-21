@@ -45,5 +45,37 @@
     height: 80%;
     width: 0%;
     margin-left: 5%;
+
+    &_text {
+      margin-top: rem(24px);
+      display: none;
+      opacity: 0;
+      color: $active_text_color;
+      text-align: center;
+
+      &_head {
+        font-weight: bold;
+        text-transform: uppercase;
+        display: none;
+        opacity: 0;
+        color: $main_text_color--dark;
+        text-align: center;
+      }
+    }
+  }
+}
+[data-theme="dark"] .hello {
+  &_interactive {
+    background: $main_head_color--dark;
+    border: rem(1px) solid $border_color--dark;
+  }
+
+  &_settings {
+    background: $main_head_color--dark;
+    border: rem(1px) solid $border_color--dark;
+
+    &_text {
+      color: $active_text_color--dark;
+    }
   }
 }

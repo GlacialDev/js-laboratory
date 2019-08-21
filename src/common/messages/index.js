@@ -3,6 +3,9 @@ export default {
     "header.main": "Главная",
     "header.works": "Мои работы",
     "header.contacts": "Контакты",
+    "hello.settings": "Настройки",
+    "hello.darkTheme": "Тёмная тема",
+    "hello.lang": "Язык",
     "first.whoQuestion": "Кто я?",
     "first.whoAnswer":
       "Меня зовут Клименко Иван. Я веб-разработчик из Санкт-Петербурга.",
@@ -15,6 +18,9 @@ export default {
     "header.main": "Main",
     "header.works": "My works",
     "header.contacts": "Contacts",
+    "hello.settings": "Settings",
+    "hello.darkTheme": "Dark theme",
+    "hello.lang": "Language",
     "first.whoQuestion": "Who am I?",
     "first.whoAnswer":
       "My name is Ivan Klimenko. I am a web developer from St. Petersburg.",

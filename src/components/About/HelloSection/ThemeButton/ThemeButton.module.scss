@@ -2,6 +2,7 @@
 @import "../../../../common/styles/variables.scss";
 
 .ThemeButton {
+  display: none;
   opacity: 0;
   border: rem(1px) solid $border_color;
   width: rem(80px);

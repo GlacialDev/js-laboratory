@@ -16,8 +16,8 @@ const rawStyleText = `/*
 */
 
 .screen { width: 65%; }
-.settings { width: 25%; border-width: 1px; }
-.buttons { opacity: 1; }
+.settings { width: 25%; border-width: 1px; padding: 1rem; }
+.buttons { display: block; opacity: 1; }
 
 /*
 ** Ладно. Интерактив - это здорово, но прокрутите колесиком мышки вниз:
