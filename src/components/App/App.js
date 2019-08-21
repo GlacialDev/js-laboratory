@@ -23,8 +23,7 @@ class App extends Component {
               >
                 <div className={styles.App} data-theme={context.state.theme}>
                   <Switch>
-                    <Route exact path="/" component={Preloader} />
-                    <Route path="/index" component={Main} />
+                    <Route exact path="/" component={Main} />
                   </Switch>
                 </div>
               </IntlProvider>

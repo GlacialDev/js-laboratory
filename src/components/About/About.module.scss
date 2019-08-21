@@ -18,11 +18,6 @@
   width: 100%;
 }
 
-.section {
-  height: 100vh;
-  width: 100%;
-}
-
 .controls {
   position: absolute;
   z-index: $z-index_content;
@@ -69,110 +64,6 @@
     border: rem(3px) solid $border_color--dark;
     &_active {
       border: rem(3px) solid $main_text_color--dark;
-    }
-  }
-}
-
-.first {
-  display: flex;
-  flex-direction: column;
-
-  &_content {
-    flex-grow: 1;
-    padding-right: 6%;
-    padding-left: 2%;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-  }
-
-  &_photo {
-    max-height: 80vh;
-  }
-
-  &_header_text {
-    margin-left: rem(30px);
-    padding-top: rem(12px);
-    color: $main_text_color;
-    font-weight: bold;
-
-    &::before {
-      @include pseudo();
-      border: rem(2px) solid $border_color;
-      height: rem(16px);
-      margin-left: rem(-15px);
-    }
-
-    &:first-child {
-      padding-top: rem(0px);
-    }
-  }
-
-  &_main_text {
-    margin-left: rem(30px);
-    padding-top: rem(6px);
-    color: $main_text_color;
-    font-size: rem(14px);
-    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
-      sans-serif;
-  }
-
-  &_svg {
-    max-width: rem(48px);
-    height: rem(48px);
-
-    &_text {
-      padding-top: rem(4px);
-      color: $main_text_color;
-      font-size: rem(14px);
-      font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
-        sans-serif;
-    }
-  }
-
-  &_text {
-    height: 80vh;
-    flex-grow: 1;
-  }
-
-  &_skills {
-    &_list {
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-    }
-
-    &_item {
-      padding-top: rem(12px);
-      padding-left: rem(6px);
-      padding-right: rem(6px);
-      min-width: 20%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-  }
-}
-[data-theme="dark"] .first {
-  &_header_text {
-    color: $main_text_color--dark;
-
-    &::before {
-      @include pseudo();
-      border: rem(2px) solid $border_color--dark;
-      height: rem(16px);
-      margin-left: rem(-15px);
-    }
-  }
-
-  &_main_text {
-    color: $main_text_color--dark;
-  }
-
-  &_svg {
-    &_text {
-      color: $main_text_color--dark;
     }
   }
 }

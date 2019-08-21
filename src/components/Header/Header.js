@@ -3,8 +3,6 @@ import { NavLink } from "react-router-dom";
 import { withRouter } from "react-router";
 import { FormattedMessage } from "react-intl";
 import styles from "./Header.module.scss";
-import LocaleButton from "./LocaleButton";
-import ThemeButton from "./ThemeButton";
 
 function Header({ match }) {
   return (
@@ -41,8 +39,6 @@ function Header({ match }) {
           </li>
         </ul>
       </nav>
-      <ThemeButton />
-      <LocaleButton />
     </div>
   );
 }

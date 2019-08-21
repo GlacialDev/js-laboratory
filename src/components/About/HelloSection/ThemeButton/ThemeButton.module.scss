@@ -1,7 +1,8 @@
-@import "../../../common/styles/mixins.scss";
-@import "../../../common/styles/variables.scss";
+@import "../../../../common/styles/mixins.scss";
+@import "../../../../common/styles/variables.scss";
 
-.LocaleButton {
+.ThemeButton {
+  opacity: 0;
   border: rem(1px) solid $border_color;
   width: rem(80px);
   height: rem(26px);
@@ -12,8 +13,8 @@
   box-shadow: inset rem(0px) rem(1px) rem(1px) rgba(0, 0, 0, 0.5),
     rem(0px) rem(1px) rem(0px) rgba(255, 255, 255, 0.2);
   &:after {
-    content: "RU";
-    color: $active_text_color;
+    content: "OFF";
+    color: #000;
     position: absolute;
     right: rem(10px);
     z-index: 0;
@@ -22,7 +23,7 @@
     text-shadow: rem(1px) rem(1px) rem(0px) rgba(255, 255, 255, 0.15);
   }
   &:before {
-    content: "EN";
+    content: "ON";
     color: $active_text_color;
     position: absolute;
     left: rem(10px);
@@ -58,13 +59,10 @@
   }
 }
 
-[data-theme="dark"] .LocaleButton {
+[data-theme="dark"] .ThemeButton {
   border: rem(1px) solid $border_color--dark;
 
   &:before {
-    color: $active_text_color--dark;
-  }
-  &:after {
     color: $active_text_color--dark;
   }
 }
