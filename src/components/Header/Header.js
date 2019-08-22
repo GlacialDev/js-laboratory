@@ -21,20 +21,20 @@ function Header() {
           </li>
           <li className={styles.navItem}>
             <NavLink
-              to={`/works`}
+              to={`/library`}
               className={styles.navLink}
               activeClassName={styles.navLink_active}
             >
-              <FormattedMessage id="header.works" />
+              <FormattedMessage id="header.library" />
             </NavLink>
           </li>
           <li className={styles.navItem}>
             <NavLink
-              to={`/contacts`}
+              to={`/blog`}
               className={styles.navLink}
               activeClassName={styles.navLink_active}
             >
-              <FormattedMessage id="header.contacts" />
+              <FormattedMessage id="header.blog" />
             </NavLink>
           </li>
         </ul>

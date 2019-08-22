@@ -4,8 +4,6 @@ import styles from "./Main.module.scss";
 import Header from "../Header";
 
 import About from "../About";
-import Works from "../Works";
-import Contacts from "../Contacts";
 
 function Main({ match }) {
   return (
@@ -13,8 +11,8 @@ function Main({ match }) {
       <Header />
       <Switch>
         <Route exact path={`${match.url}`} component={About} />
-        <Route path={`${match.url}/works`} component={Works} />
-        <Route path={`${match.url}/contacts`} component={Contacts} />
+        {/* <Route path={`${match.url}/library`} component={} /> */}
+        {/* <Route path={`${match.url}/blog`} component={} /> */}
       </Switch>
     </div>
   );

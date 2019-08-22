@@ -25,9 +25,66 @@
   top: rem(43px);
   right: 3%;
 
-  &_list {
+  &_arrow {
+    cursor: pointer;
     border: rem(1px) solid $border_color;
-    padding: rem(4px);
+    border-radius: rem(2px);
+
+    &::before {
+      transition: 0.3s;
+      content: "";
+      display: inline-block;
+      width: rem(8px);
+      height: rem(8px);
+      border-right: rem(3px) solid darken($border_color, 30%);
+      border-top: rem(3px) solid darken($border_color, 30%);
+    }
+
+    &_top {
+      padding: rem(4px) rem(8px) rem(4px) rem(8px);
+      &::before {
+        transform: rotate(-45deg);
+      }
+    }
+
+    &_bottom {
+      padding: rem(4px) rem(8px) rem(4px) rem(8px);
+      &::before {
+        transform: rotate(135deg);
+      }
+    }
+
+    &:hover {
+      border: rem(1px) solid darken($border_color, 30%);
+      &::before {
+        border-right: rem(3px) solid $active_text_color;
+        border-top: rem(3px) solid $active_text_color;
+      }
+    }
+  }
+
+  &_theme {
+    cursor: pointer;
+    border: rem(1px) solid $border_color;
+    border-radius: rem(2px);
+    margin-top: rem(8px);
+    width: rem(26px);
+    height: rem(26px);
+
+    &:hover {
+      border: rem(1px) solid $main_text_color;
+    }
+
+    &_svg {
+      fill: darken($border_color, 30%);
+    }
+  }
+
+  &_list {
+    margin-top: rem(8px);
+    margin-bottom: rem(8px);
+    border: rem(1px) solid $border_color;
+    padding: rem(9px);
     border-radius: rem(2px);
   }
 
@@ -53,10 +110,34 @@
     &:first-child {
       margin-top: rem(0px);
     }
+
+    &:hover {
+      border: rem(3px) solid $active_text_color;
+    }
   }
 }
 [data-theme="dark"] .controls {
   border: $border_color--dark;
+  &_arrow {
+    border: rem(1px) solid $border_color--dark;
+    &::before {
+      border-right: rem(3px) solid $border_color--dark;
+      border-top: rem(3px) solid $border_color--dark;
+    }
+    &:hover {
+      &::before {
+        border-right: rem(3px) solid $active_text_color--dark;
+        border-top: rem(3px) solid $active_text_color--dark;
+      }
+    }
+  }
+  &_theme {
+    border: rem(1px) solid $main_text_color--dark;
+
+    &_svg {
+      fill: $active_text_color--dark;
+    }
+  }
   &_list {
     border: rem(1px) solid $border_color--dark;
   }
@@ -64,6 +145,9 @@
     border: rem(3px) solid $border_color--dark;
     &_active {
       border: rem(3px) solid $main_text_color--dark;
+    }
+    &:hover {
+      border: rem(3px) solid $active_text_color--dark;
     }
   }
 }

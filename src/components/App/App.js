@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Contacts from "../Contacts";
-import Works from "../Works";
 import Main from "../Main";
 import { ContextProvider, ContextConsumer } from "../../common/context/Context";
 import { IntlProvider } from "react-intl";
@@ -25,8 +23,6 @@ class App extends Component {
                 <div className={styles.App} data-theme={context.state.theme}>
                   <Switch>
                     <Route exact path="/" component={Main} />
-                    <Route path={`works`} component={Works} />
-                    <Route path={`contacts`} component={Contacts} />
                   </Switch>
                 </div>
               </IntlProvider>

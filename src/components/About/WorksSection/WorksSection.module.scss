@@ -1,0 +1,10 @@
+@import "../../../common/styles/mixins.scss";
+@import "../../../common/styles/variables.scss";
+
+.works {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

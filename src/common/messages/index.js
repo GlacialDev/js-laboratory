@@ -1,8 +1,8 @@
 export default {
   ru: {
     "header.main": "Главная",
-    "header.works": "Мои работы",
-    "header.contacts": "Контакты",
+    "header.library": "Библиотека",
+    "header.blog": "Блог",
     "hello.settings": "Настройки",
     "hello.darkTheme": "Тёмная тема",
     "hello.lang": "Язык",
@@ -16,8 +16,8 @@ export default {
   },
   en: {
     "header.main": "Main",
-    "header.works": "My works",
-    "header.contacts": "Contacts",
+    "header.library": "Library",
+    "header.blog": "Blog",
     "hello.settings": "Settings",
     "hello.darkTheme": "Dark theme",
     "hello.lang": "Language",
