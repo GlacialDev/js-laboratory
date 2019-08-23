@@ -1,42 +1,58 @@
 import React from "react";
 import styles from "./WorksSection.module.scss";
 import HeaderStub from "../../Header/HeaderStub";
-import TinySlider from "tiny-slider-react";
+import Slider from "react-slick";
+import img1 from "./imgs/1.jpg";
+import img2 from "./imgs/2.jpg";
+import img3 from "./imgs/3.jpeg";
+import img4 from "./imgs/4.png";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import "../../../common/styles/slider.scss";
+import { FormattedMessage } from "react-intl";
 
 function WorksSection() {
-  let imgs = [
-    "http://d2ji2mue1p384z.cloudfront.net/img/480x360/162951.jpg",
-    "http://d2ji2mue1p384z.cloudfront.net/img/480x360/162465.jpg",
-    "http://d2ji2mue1p384z.cloudfront.net/img/480x360/220048.jpg"
-  ];
-  const loadingImage =
-    "data:image/gif;base64,\
-  R0lGODlhAQABAPAAAMzMzAAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==";
-  const settings = {
-    lazyload: true,
-    nav: true,
-    // mouseDrag: true,
-    loop: true,
-    items: 1
-  };
-
   return (
-    <section className={styles.hello}>
+    <section className={styles.works}>
       <HeaderStub />
-      <TinySlider settings={settings}>
-        {imgs.map((el, index) => (
-          <div key={index} style={{ position: "relative" }}>
-            <img
-              className={`tns-lazy-img`}
-              src={loadingImage}
-              data-src={el}
-              alt=""
-            />
-          </div>
-        ))}
-      </TinySlider>
+      <div className={styles.works_content}>
+        <div className={styles.works_header}>
+          <FormattedMessage id="works.header" />
+        </div>
+        <div className={styles.slider_wrapper}>
+          <SimpleSlider />
+        </div>
+      </div>
     </section>
   );
 }
 
 export default WorksSection;
+
+class SimpleSlider extends React.Component {
+  render() {
+    var settings = {
+      dots: true,
+      infinite: false,
+      speed: 500,
+      slidesToShow: 1,
+      slidesToScroll: 1
+    };
+    return (
+      <Slider {...settings}>
+        <div>
+          <img src={img1} className={styles.slider_image} alt="" />
+        </div>
+        <div>
+          <img src={img2} className={styles.slider_image} alt="" />
+        </div>
+        <div>
+          <img src={img3} className={styles.slider_image} alt="" />
+        </div>
+        <div>
+          <img src={img4} className={styles.slider_image} alt="" />
+        </div>
+      </Slider>
+    );
+  }
+}

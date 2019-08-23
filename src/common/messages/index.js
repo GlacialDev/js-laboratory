@@ -14,7 +14,8 @@ export default {
     "first.whatQuestion": "Что умею?",
     "first.whatAnswer":
       "Специализируюсь на фронтенде. Однако знаком также и с бекенд-разработкой.",
-    "first.techQuestion": "Какими технологиями владею?"
+    "first.techQuestion": "Какими технологиями владею?",
+    "works.header": "Мои работы"
   },
   en: {
     "header.main": "Main",
@@ -31,6 +32,7 @@ export default {
     "first.whatQuestion": "What can I do?",
     "first.whatAnswer":
       "I specialize in frontend. However, I am also familiar with backend development.",
-    "first.techQuestion": "What technologies do I use?"
+    "first.techQuestion": "What technologies do I use?",
+    "works.header": "My works"
   }
 };

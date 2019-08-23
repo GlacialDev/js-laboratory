@@ -28,7 +28,7 @@ function FirstSection() {
     <section className={styles.first}>
       <HeaderStub />
       <div className={styles.first_content}>
-        <img className={styles.first_photo} src={avatar} alt="Мое фото" />
+        <img className={styles.first_photo} src={avatar} alt="" />
         <div className={styles.first_text}>
           <div className={styles.first_header_text}>
             <FormattedMessage id="first.whoQuestion" />
