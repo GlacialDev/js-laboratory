@@ -80,6 +80,27 @@
     }
   }
 
+  &_lang {
+    cursor: pointer;
+    border: rem(1px) solid $border_color;
+    border-radius: rem(2px);
+    margin-top: rem(8px);
+    width: rem(26px);
+    height: rem(26px);
+
+    &:hover {
+      border: rem(1px) solid $main_text_color;
+    }
+
+    &_svg {
+      fill: darken($border_color, 30%);
+    }
+
+    &:hover &_svg {
+      fill: $active_text_color;
+    }
+  }
+
   &_list {
     margin-top: rem(8px);
     margin-bottom: rem(8px);
@@ -125,6 +146,7 @@
       border-top: rem(3px) solid $border_color--dark;
     }
     &:hover {
+      border: rem(1px) solid $main_text_color--dark;
       &::before {
         border-right: rem(3px) solid $active_text_color--dark;
         border-top: rem(3px) solid $active_text_color--dark;
@@ -135,6 +157,15 @@
     border: rem(1px) solid $main_text_color--dark;
 
     &_svg {
+      fill: $active_text_color--dark;
+    }
+  }
+  &_lang {
+    border: rem(1px) solid $border_color--dark;
+    &:hover {
+      border: rem(1px) solid $main_text_color--dark;
+    }
+    &:hover .controls_lang_svg {
       fill: $active_text_color--dark;
     }
   }
