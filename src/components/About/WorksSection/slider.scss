@@ -1,0 +1,46 @@
+@import "../../../common/styles/mixins.scss";
+@import "../../../common/styles/variables.scss";
+
+.slider_wrapper {
+  & .slick-next {
+    right: rem(-25px) !important;
+  }
+
+  & .slick-prev {
+    left: rem(-35px) !important;
+  }
+
+  & .slick-next::before,
+  & .slick-prev::before {
+    font-size: rem(30px) !important;
+    color: $active_text_color !important;
+  }
+
+  & .slick-dots li button::before {
+    opacity: 0.4 !important;
+    font-size: rem(9px) !important;
+    color: $active_text_color !important;
+  }
+
+  & .slick-dots li.slick-active button::before {
+    opacity: 1 !important;
+    font-size: rem(9px) !important;
+    color: $active_text_color !important;
+  }
+}
+
+[data-theme="dark"] .slider_wrapper {
+  & .slick-next::before,
+  & .slick-prev::before {
+    color: $active_text_color--dark !important;
+  }
+
+  & .slick-dots li button::before {
+    opacity: 0.2 !important;
+    color: $active_text_color--dark !important;
+  }
+
+  & .slick-dots li.slick-active button::before {
+    opacity: 1 !important;
+  }
+}

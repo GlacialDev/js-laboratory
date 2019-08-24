@@ -8,7 +8,7 @@ import img3 from "./imgs/3.jpeg";
 import img4 from "./imgs/4.png";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import "../../../common/styles/slider.scss";
+import "./slider.scss";
 import { FormattedMessage } from "react-intl";
 
 function WorksSection() {
@@ -19,7 +19,7 @@ function WorksSection() {
         <div className={styles.works_header}>
           <FormattedMessage id="works.header" />
         </div>
-        <div className={styles.slider_wrapper}>
+        <div className={`${styles.slider_wrapper} slider_wrapper`}>
           <SimpleSlider />
         </div>
       </div>
