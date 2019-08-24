@@ -69,7 +69,7 @@ class SimpleSlider extends React.Component {
     return (
       <Slider {...settings}>
         {worksList.map((slide, index) => (
-          <a className={styles.slider_link} href={slide.href}>
+          <a className={styles.slider_link} href={slide.href} key={index}>
             <img src={slide.img} className={styles.slider_image} alt="" />
             <div className={styles.slider_description}>
               <div className={styles.slider_description_header}>
