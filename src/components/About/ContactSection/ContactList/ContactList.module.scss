@@ -1,0 +1,69 @@
+@import "../../../../common/styles/mixins.scss";
+@import "../../../../common/styles/variables.scss";
+
+.contacts {
+  margin-right: rem(32px);
+  height: 90%;
+  border: rem(1px) solid $border_color;
+  background: $main_head_color;
+
+  &_list {
+    width: 100%;
+    height: 100%;
+    padding: rem(32px);
+  }
+
+  &_item {
+    margin-bottom: rem(20px);
+    &_head {
+      padding-left: rem(16px);
+      color: $main_text_color;
+      font-weight: bold;
+
+      &::before {
+        @include pseudo();
+        border: rem(2px) solid $border_color;
+        height: rem(16px);
+        margin-left: rem(-16px);
+      }
+    }
+
+    &_text {
+      padding-left: rem(16px);
+      margin-top: rem(4px);
+      color: $main_text_color;
+      font-size: rem(16px);
+      font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+        sans-serif;
+    }
+
+    &_link {
+      color: $active_text_color;
+      text-decoration: underline;
+    }
+  }
+}
+
+[data-theme="dark"] .contacts {
+  border: rem(1px) solid $border_color--dark;
+  background: $main_head_color--dark;
+
+  &_item {
+    &_head {
+      color: $main_text_color--dark;
+      font-weight: bold;
+
+      &::before {
+        border: rem(2px) solid $border_color--dark;
+      }
+    }
+
+    &_text {
+      color: $main_text_color--dark;
+    }
+
+    &_link {
+      color: $active_text_color--dark;
+    }
+  }
+}

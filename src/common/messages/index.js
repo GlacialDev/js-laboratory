@@ -15,7 +15,13 @@ export default {
     "first.whatAnswer":
       "Специализируюсь на фронтенде. Однако знаком также и с бекенд-разработкой.",
     "first.techQuestion": "Какими технологиями владею?",
-    "works.header": "Мои работы"
+    "works.header": "Мои работы",
+    "contacts.header": "Мои контакты",
+    "contacts.email": "Почта:",
+    "contacts.phone": "Телефон:",
+    "contacts.github": "Гитхаб:",
+    "contacts.telegram": "Телеграм:",
+    "contacts.vkontakte": "Вконтакте:"
   },
   en: {
     "header.main": "Main",
@@ -33,6 +39,12 @@ export default {
     "first.whatAnswer":
       "I specialize in frontend. However, I am also familiar with backend development.",
     "first.techQuestion": "What technologies do I use?",
-    "works.header": "My works"
+    "works.header": "My works",
+    "contacts.header": "My contacts",
+    "contacts.email": "Email:",
+    "contacts.phone": "Phone:",
+    "contacts.github": "Github:",
+    "contacts.telegram": "Telegram:",
+    "contacts.vkontakte": "Vkontakte:"
   }
 };

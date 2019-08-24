@@ -1,0 +1,10 @@
+@import "../../../../common/styles/mixins.scss";
+@import "../../../../common/styles/variables.scss";
+
+.about {
+  margin-right: rem(32px);
+  flex-grow: 1;
+  height: 90%;
+  border: rem(1px) solid $border_color;
+  background: $main_head_color;
+}
