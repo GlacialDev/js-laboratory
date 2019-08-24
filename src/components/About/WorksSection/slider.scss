@@ -1,7 +1,7 @@
 @import "../../../common/styles/mixins.scss";
 @import "../../../common/styles/variables.scss";
 
-.slider_wrapper {
+.slider_works_wrapper {
   & .slick-next {
     right: rem(-25px) !important;
   }
@@ -21,6 +21,11 @@
     font-size: rem(9px) !important;
     color: $active_text_color !important;
   }
+  & .slick-dots li button:hover::before {
+    opacity: 1 !important;
+    font-size: rem(9px) !important;
+    color: $active_text_color !important;
+  }
 
   & .slick-dots li.slick-active button::before {
     opacity: 1 !important;
@@ -29,7 +34,7 @@
   }
 }
 
-[data-theme="dark"] .slider_wrapper {
+[data-theme="dark"] .slider_works_wrapper {
   & .slick-next::before,
   & .slick-prev::before {
     color: $active_text_color--dark !important;
@@ -37,6 +42,10 @@
 
   & .slick-dots li button::before {
     opacity: 0.2 !important;
+    color: $active_text_color--dark !important;
+  }
+  & .slick-dots li button:hover::before {
+    opacity: 1 !important;
     color: $active_text_color--dark !important;
   }
 
