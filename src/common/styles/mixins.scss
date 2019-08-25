@@ -82,3 +82,54 @@
   height: $width;
   background-color: $color;
 }
+
+@mixin header-line($font_size) {
+  &::before {
+    @include pseudo();
+    border: rem(2px) solid $border_color;
+    height: $font_size;
+    margin-left: rem(-15px);
+  }
+
+  [data-theme="dark"] &::before {
+    border: rem(2px) solid $border_color--dark;
+  }
+}
+
+@mixin color($color, $color--dark) {
+  color: $color;
+
+  [data-theme="dark"] & {
+    color: $color--dark;
+  }
+}
+
+@mixin border($width, $color, $color--dark) {
+  border: $width solid $color;
+
+  [data-theme="dark"] & {
+    border: $width solid $color--dark;
+  }
+}
+
+@mixin background-color($color, $color--dark) {
+  background-color: $color;
+
+  [data-theme="dark"] & {
+    background-color: $color--dark;
+  }
+}
+
+@mixin background-color--hover($color, $color--dark) {
+  &:hover {
+    background-color: $color;
+  }
+
+  [data-theme="dark"] &:hover {
+    background-color: $color--dark;
+  }
+}
+
+@mixin fonts-text() {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}

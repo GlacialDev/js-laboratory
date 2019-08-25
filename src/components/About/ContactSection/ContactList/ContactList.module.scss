@@ -4,8 +4,8 @@
 .contacts {
   margin-right: rem(32px);
   height: 90%;
-  border: rem(1px) solid $border_color;
-  background: $main_head_color;
+  @include border(rem(1px), $border_color, $border_color--dark);
+  @include background-color($main_head_color, $main_head_color--dark);
 
   &_list {
     width: 100%;
@@ -17,53 +17,22 @@
     margin-bottom: rem(20px);
     &_head {
       padding-left: rem(16px);
-      color: $main_text_color;
+      @include color($main_text_color, $main_text_color--dark);
       font-weight: bold;
-
-      &::before {
-        @include pseudo();
-        border: rem(2px) solid $border_color;
-        height: rem(16px);
-        margin-left: rem(-16px);
-      }
+      @include header-line(rem(16px));
     }
 
     &_text {
       padding-left: rem(16px);
       margin-top: rem(4px);
-      color: $main_text_color;
+      @include color($main_text_color, $main_text_color--dark);
       font-size: rem(16px);
-      font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
-        sans-serif;
+      @include fonts-text();
     }
 
     &_link {
-      color: $active_text_color;
+      @include color($active_text_color, $active_text_color--dark);
       text-decoration: underline;
-    }
-  }
-}
-
-[data-theme="dark"] .contacts {
-  border: rem(1px) solid $border_color--dark;
-  background: $main_head_color--dark;
-
-  &_item {
-    &_head {
-      color: $main_text_color--dark;
-      font-weight: bold;
-
-      &::before {
-        border: rem(2px) solid $border_color--dark;
-      }
-    }
-
-    &_text {
-      color: $main_text_color--dark;
-    }
-
-    &_link {
-      color: $active_text_color--dark;
     }
   }
 }

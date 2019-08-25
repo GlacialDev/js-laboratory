@@ -20,26 +20,10 @@
   &_header {
     margin-top: rem(32px);
     margin-bottom: rem(32px);
-    color: $main_text_color;
+    @include color($main_text_color, $main_text_color--dark);
     font-weight: bold;
     font-size: rem(32px);
-
-    &::before {
-      @include pseudo();
-      border: rem(2px) solid $border_color;
-      height: rem(34px);
-      margin-left: rem(-15px);
-    }
-  }
-}
-
-[data-theme="dark"] .works {
-  &_header {
-    color: $main_text_color--dark;
-
-    &::before {
-      border: rem(2px) solid $border_color--dark;
-    }
+    @include header-line(rem(32px));
   }
 }
 
@@ -63,9 +47,12 @@
 
   &_description {
     opacity: 0;
-    color: $main_text_color;
-    background: $main_head_color;
-    border: rem(1px) solid $border_color;
+    @include color($main_text_color, $main_text_color--dark);
+    @include background-color(
+      $main_head_color,
+      darken($main_head_color--dark, 5%)
+    );
+    @include border(rem(1px), $border-color, $border-color--dark);
     position: absolute;
     right: 0%;
     top: 0%;
@@ -77,49 +64,22 @@
 
     &_header {
       align-self: center;
-      color: $main_text_color;
+      @include color($main_text_color, $main_text_color--dark);
       font-weight: bold;
       font-size: rem(18px);
-
-      &::before {
-        @include pseudo();
-        border: rem(2px) solid $border_color;
-        height: rem(20px);
-        margin-left: rem(-15px);
-      }
+      @include header-line(rem(18px));
     }
 
     &_text {
       text-align: justify;
       padding-top: rem(14px);
-      color: $main_text_color;
+      @include color($main_text_color, $main_text_color--dark);
       font-size: rem(14px);
-      font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
-        sans-serif;
+      @include fonts-text();
     }
   }
 
   &_link:hover &_description {
     opacity: 0.9;
-  }
-}
-
-[data-theme="dark"] .slider {
-  &_description {
-    color: $main_text_color--dark;
-    background: darken($main_head_color--dark, 5%);
-    border: rem(1px) solid $border_color--dark;
-
-    &_header {
-      color: $main_text_color--dark;
-
-      &::before {
-        border: rem(2px) solid $border_color--dark;
-      }
-    }
-
-    &_text {
-      color: $main_text_color--dark;
-    }
   }
 }

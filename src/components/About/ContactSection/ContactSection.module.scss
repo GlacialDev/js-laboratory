@@ -11,16 +11,10 @@
     align-self: center;
     margin-top: rem(32px);
     margin-bottom: rem(32px);
-    color: $main_text_color;
+    @include color($main_text_color, $main_text_color--dark);
     font-weight: bold;
     font-size: rem(32px);
-
-    &::before {
-      @include pseudo();
-      border: rem(2px) solid $border_color;
-      height: rem(34px);
-      margin-left: rem(-15px);
-    }
+    @include header-line(rem(32px));
   }
 
   &_content {
@@ -29,15 +23,5 @@
     display: flex;
     flex-grow: 1;
     flex-direction: row;
-  }
-}
-
-[data-theme="dark"] .contacts {
-  &_header {
-    color: $main_text_color--dark;
-
-    &::before {
-      border: rem(2px) solid $border_color--dark;
-    }
   }
 }

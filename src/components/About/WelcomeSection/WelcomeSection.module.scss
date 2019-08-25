@@ -10,16 +10,10 @@
   align-items: center;
 
   &_question {
-    color: $main_text_color;
     font-weight: bold;
     font-size: rem(48px);
-
-    &::before {
-      @include pseudo();
-      border: rem(2px) solid $border_color;
-      height: rem(52px);
-      margin-left: rem(-15px);
-    }
+    @include color($main_text_color, $main_text_color--dark);
+    @include header-line(rem(48px));
   }
 
   &_button {
@@ -27,36 +21,15 @@
     margin-top: rem(48px);
     margin-bottom: rem(64px);
     padding: rem(12px);
-    color: $active_text_color;
-    background-color: $main_body_color;
-    border: rem(2px) solid $active_text_color;
     border-radius: rem(8px);
     font-size: rem(24px);
-    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
-      sans-serif;
-
-    &:hover {
-      background-color: lighten($active_text_color, 52.5%);
-    }
-  }
-}
-
-[data-theme="dark"] .welcome {
-  &_question {
-    color: $main_text_color--dark;
-
-    &::before {
-      border: rem(2px) solid $border_color--dark;
-    }
-  }
-
-  &_button {
-    color: $active_text_color--dark;
-    border: rem(2px) solid $active_text_color--dark;
-    background-color: $main_body_color--dark;
-
-    &:hover {
-      background-color: $main_head_color--dark;
-    }
+    @include color($active_text_color, $active_text_color--dark);
+    @include background-color($main_body_color, $main_body_color--dark);
+    @include background-color--hover(
+      lighten($active_text_color, 52.5%),
+      $main_head_color--dark
+    );
+    @include border(rem(2px), $active_text_color, $active_text_color--dark);
+    @include fonts-text();
   }
 }

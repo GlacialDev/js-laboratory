@@ -7,14 +7,14 @@
   font-size: rem(16px);
   position: fixed;
   width: 100%;
-  background: $main_head_color;
+  @include background-color($main_head_color, $main_head_color--dark);
   border-bottom: rem(1px) solid $border_color;
   display: flex;
   justify-content: center;
-}
-[data-theme="dark"] .header {
-  background: $main_head_color--dark;
-  border-bottom: rem(1px) solid $border_color--dark;
+
+  [data-theme="dark"] & {
+    border-bottom: rem(1px) solid $border_color--dark;
+  }
 }
 
 .nav {
@@ -42,44 +42,27 @@
   &:last-child::after {
     display: none;
   }
-}
-[data-theme="dark"] .navItem {
-  &::after {
-    @include pseudo;
-    @include square(rem(6px), $main_text_color--dark);
-    right: rem(-12px);
-    bottom: rem(18px);
-  }
 
-  &:last-child::after {
-    display: none;
+  [data-theme="dark"] & {
+    &::after {
+      @include square(rem(6px), $main_text_color--dark);
+    }
   }
 }
 
 .navLink {
   transition: 0.3s;
   padding: rem(12px) rem(0px);
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-  color: $main_text_color;
+  @include fonts-text();
+  @include color($main_text_color, $main_text_color--dark);
   text-decoration: none;
   text-transform: uppercase;
 
   &:hover {
-    color: $active_text_color;
+    @include color($active_text_color, $active_text_color--dark);
   }
 
   &_active {
-    color: $active_text_color;
-  }
-}
-[data-theme="dark"] .navLink {
-  color: $main_text_color--dark;
-
-  &:hover {
-    color: $active_text_color--dark;
-  }
-
-  &_active {
-    color: $active_text_color--dark;
+    @include color($active_text_color, $active_text_color--dark);
   }
 }

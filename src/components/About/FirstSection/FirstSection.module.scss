@@ -24,15 +24,9 @@
   &_header_text {
     margin-left: rem(30px);
     padding-top: rem(12px);
-    color: $main_text_color;
+    @include color($main_text_color, $main_text_color--dark);
     font-weight: bold;
-
-    &::before {
-      @include pseudo();
-      border: rem(2px) solid $border_color;
-      height: rem(16px);
-      margin-left: rem(-15px);
-    }
+    @include header-line(rem(16px));
 
     &:first-child {
       padding-top: rem(0px);
@@ -42,10 +36,9 @@
   &_main_text {
     margin-left: rem(30px);
     padding-top: rem(6px);
-    color: $main_text_color;
+    @include color($main_text_color, $main_text_color--dark);
     font-size: rem(14px);
-    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
-      sans-serif;
+    @include fonts-text();
   }
 
   &_svg {
@@ -54,10 +47,9 @@
 
     &_text {
       padding-top: rem(4px);
-      color: $main_text_color;
+      @include color($main_text_color, $main_text_color--dark);
       font-size: rem(14px);
-      font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
-        sans-serif;
+      @include fonts-text();
     }
   }
 
@@ -81,28 +73,6 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-    }
-  }
-}
-[data-theme="dark"] .first {
-  &_header_text {
-    color: $main_text_color--dark;
-
-    &::before {
-      @include pseudo();
-      border: rem(2px) solid $border_color--dark;
-      height: rem(16px);
-      margin-left: rem(-15px);
-    }
-  }
-
-  &_main_text {
-    color: $main_text_color--dark;
-  }
-
-  &_svg {
-    &_text {
-      color: $main_text_color--dark;
     }
   }
 }
