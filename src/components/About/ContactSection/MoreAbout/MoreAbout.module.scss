@@ -7,4 +7,23 @@
   height: 90%;
   border: rem(1px) solid $border_color;
   background: $main_head_color;
+
+  &_container {
+    padding: rem(32px);
+    white-space: pre-wrap;
+    color: $main_text_color;
+    font-size: rem(16px);
+    line-height: rem(20px);
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+      sans-serif;
+  }
+}
+
+[data-theme="dark"] .about {
+  border: rem(1px) solid $border_color--dark;
+  background: $main_head_color--dark;
+
+  &_container {
+    color: $main_text_color--dark;
+  }
 }
