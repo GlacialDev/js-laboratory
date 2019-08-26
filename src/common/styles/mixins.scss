@@ -107,7 +107,7 @@
   }
 }
 @mixin tablet-landscape {
-  @media screen and (max-height: 768px) and (max-width: 1024px) and (orientation: landscape) {
+  @media screen and (min-height: 768px) and (min-width: 1024px) and (max-height: 768px) and (max-width: 1366px) and (orientation: landscape) {
     @content;
   }
 }
@@ -118,7 +118,7 @@
   }
 }
 @mixin mobile-landscape {
-  @media screen and (max-height: 320px) and (max-width: 480px) and (orientation: landscape) {
+  @media screen and (min-height: 320px) and (min-width: 480px) and (max-height: 767px) and (max-width: 1023px) and (orientation: landscape) {
     @content;
   }
 }
