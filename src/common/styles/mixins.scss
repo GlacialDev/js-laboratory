@@ -76,7 +76,7 @@
 // media queries
 
 @mixin mobile-portrait {
-  @media screen and (max-height: 800px) and (max-width: 400px) and (orientation: portrait) {
+  @media screen and (max-height: 824px) and (max-width: 432px) and (orientation: portrait) {
     @content;
   }
 }
