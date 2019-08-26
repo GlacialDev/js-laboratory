@@ -4,6 +4,9 @@
 .slider_works_wrapper {
   & .slick-next {
     right: rem(-25px) !important;
+    @include mobile-landscape {
+      right: rem(-35px) !important;
+    }
   }
 
   & .slick-prev {

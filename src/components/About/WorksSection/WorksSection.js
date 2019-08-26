@@ -14,8 +14,8 @@ import { FormattedMessage } from "react-intl";
 function WorksSection() {
   return (
     <section className={styles.works}>
-      <HeaderStub />
       <div className={styles.works_content}>
+        <HeaderStub />
         <div className={styles.works_header}>
           <FormattedMessage id="works.header" />
         </div>

@@ -8,6 +8,10 @@
   @include border(rem(1px), $border_color, $border_color--dark);
   @include background-color($main_head_color, $main_head_color--dark);
 
+  @include mobile-landscape {
+    margin-right: rem(0px);
+  }
+
   &_container {
     padding: rem(32px);
     white-space: pre-wrap;
@@ -15,5 +19,15 @@
     font-size: rem(16px);
     line-height: rem(20px);
     @include fonts-text();
+
+    @include tablet-landscape {
+      font-size: rem(18px);
+      line-height: rem(22px);
+    }
+    @include mobile-landscape {
+      padding: rem(12px);
+      font-size: rem(14px);
+      line-height: rem(16px);
+    }
   }
 }

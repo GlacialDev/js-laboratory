@@ -14,6 +14,11 @@
     font-size: rem(48px);
     @include color($main_text_color, $main_text_color--dark);
     @include header-line(rem(48px));
+
+    @include mobile-landscape {
+      font-size: rem(32px);
+      @include header-line(rem(32px));
+    }
   }
 
   &_button {

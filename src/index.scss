@@ -1,0 +1,37 @@
+@import "./common/styles/mixins.scss";
+@import "./common/styles/variables.scss";
+
+html,
+body {
+  width: 100%;
+  height: 100vh;
+  margin: 0;
+  overflow: hidden;
+
+  @include desktop-large {
+    font-size: 24px;
+  }
+  @include desktop-middle {
+    font-size: 20px;
+  }
+  @include desktop-small {
+    font-size: 16px;
+  }
+  @include tablet-landscape {
+    font-size: 14px;
+  }
+  @include mobile-landscape {
+    font-size: 12px;
+  }
+}
+
+#root {
+  width: 100%;
+  height: 100vh;
+}
+
+*,
+*:after,
+*:before {
+  box-sizing: border-box;
+}

@@ -25,6 +25,10 @@
   top: rem(43px);
   right: 3%;
 
+  @include mobile-landscape {
+    display: none;
+  }
+
   &_arrow {
     cursor: pointer;
     border: rem(1px) solid $border_color;

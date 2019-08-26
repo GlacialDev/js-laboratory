@@ -4,4 +4,8 @@
 .HeaderStub {
   height: rem(43px);
   width: 100%;
+
+  @include mobile-landscape {
+    height: rem(31px);
+  }
 }
