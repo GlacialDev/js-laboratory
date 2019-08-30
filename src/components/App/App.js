@@ -23,6 +23,7 @@ class App extends Component {
                 <div className={styles.App} data-theme={context.state.theme}>
                   <Switch>
                     <Route exact path="/" component={Main} />
+                    <Route exact path="/library" component={Main} />
                   </Switch>
                 </div>
               </IntlProvider>
