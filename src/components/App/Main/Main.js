@@ -12,7 +12,7 @@ function Main() {
       <Header />
       <Switch>
         <Route exact path="/" component={About} />
-        <Route exact path="/login" component={Login} />
+        <Route path="/login" component={Login} />
         <Route component={ErrorPage} />
       </Switch>
     </div>
