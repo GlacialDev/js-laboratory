@@ -32,7 +32,7 @@
     }
 
     &_item {
-      width: 33.33%;
+      width: 50%;
       text-align: center;
       @include color($main_text_color, $main_text_color--dark);
       @include background-color($main_head_color, $main_head_color--dark);

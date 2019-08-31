@@ -4,7 +4,6 @@ import HeaderStub from "../Header/HeaderStub";
 import { NavLink, Route, Switch, Redirect } from "react-router-dom";
 import { FormattedMessage } from "react-intl";
 import SignInTab from "./SignInTab";
-import PassChangeTab from "./PassChangeTab";
 import SignUpTab from "./SignUpTab";
 
 function Login({ match }) {
@@ -34,25 +33,12 @@ function Login({ match }) {
                   <FormattedMessage id="login.registration" />
                 </NavLink>
               </li>
-              <li className={styles.login_navbar_item}>
-                <NavLink
-                  to={`${match.url}/passchange`}
-                  className={styles.login_navbar_link}
-                  activeClassName={styles.login_navbar_link_active}
-                >
-                  <FormattedMessage id="login.passchange" />
-                </NavLink>
-              </li>
             </ul>
           </nav>
           <div className={styles.login_tabs}>
             <Switch>
               <Route exact path={`${match.url}`} component={SignInTab} />
               <Route path={`${match.url}/signup`} component={SignUpTab} />
-              <Route
-                path={`${match.url}/passchange`}
-                component={PassChangeTab}
-              />
               <Route component={() => <Redirect to="/error" />} />
             </Switch>
           </div>
