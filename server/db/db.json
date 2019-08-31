@@ -1,0 +1,26 @@
+{
+  "posts": [
+    {
+      "title": "post title",
+      "text": "post text"
+    },
+    {
+      "title": "post title 2",
+      "text": "post text 2"
+    },
+    {
+      "title": "post title 3",
+      "text": "post text 3"
+    }
+  ],
+  "users": [
+    {
+      "name": "Glacialix",
+      "password": "123456"
+    },
+    {
+      "name": "guest",
+      "password": "111"
+    }
+  ]
+}

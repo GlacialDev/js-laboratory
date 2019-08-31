@@ -2,6 +2,7 @@
 
 # dependencies
 /server/node_modules
+/server/db/db.json
 /node_modules
 /.pnp
 .pnp.js

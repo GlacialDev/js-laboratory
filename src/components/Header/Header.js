@@ -37,6 +37,15 @@ function Header() {
               <FormattedMessage id="header.blog" />
             </NavLink>
           </li>
+          <li className={styles.navItem}>
+            <NavLink
+              to={`/login`}
+              className={styles.navLink}
+              activeClassName={styles.navLink_active}
+            >
+              <FormattedMessage id="header.login" />
+            </NavLink>
+          </li>
         </ul>
       </nav>
     </div>

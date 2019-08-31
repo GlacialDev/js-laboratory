@@ -22,19 +22,8 @@
   }
 
   &_button {
-    cursor: pointer;
     margin-top: rem(48px);
     margin-bottom: rem(64px);
-    padding: rem(12px);
-    border-radius: rem(8px);
-    font-size: rem(24px);
-    @include color($active_text_color, $active_text_color--dark);
-    @include background-color($main_body_color, $main_body_color--dark);
-    @include background-color--hover(
-      lighten($active_text_color, 52.5%),
-      $main_head_color--dark
-    );
-    @include border(rem(2px), $active_text_color, $active_text_color--dark);
-    @include fonts-text();
+    @include button();
   }
 }

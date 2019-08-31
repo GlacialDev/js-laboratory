@@ -1,9 +1,10 @@
 {
-  "name": "server",
-  "version": "1.0.0",
+  "name": "js-laboratory-server",
+  "version": "0.1.0",
   "description": "server for my app",
   "main": "index.js",
   "scripts": {
+    "start": "node server/index.js",
     "server": "nodemon server/index.js"
   },
   "author": "",

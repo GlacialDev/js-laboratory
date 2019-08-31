@@ -31,7 +31,7 @@
 
   &_arrow {
     cursor: pointer;
-    border: rem(1px) solid $border_color;
+    @include border(rem(1px), $border_color, $border_color--dark);
     border-radius: rem(2px);
 
     &::before {
@@ -59,7 +59,11 @@
     }
 
     &:hover {
-      border: rem(1px) solid darken($border_color, 30%);
+      @include border(
+        rem(1px),
+        darken($border_color, 30%),
+        $main_text_color--dark
+      );
       &::before {
         border-right: rem(3px) solid $active_text_color;
         border-top: rem(3px) solid $active_text_color;
@@ -69,14 +73,14 @@
 
   &_theme {
     cursor: pointer;
-    border: rem(1px) solid $border_color;
+    @include border(rem(1px), $border_color, $main_text_color--dark);
     border-radius: rem(2px);
     margin-top: rem(8px);
     width: rem(26px);
     height: rem(26px);
 
     &:hover {
-      border: rem(1px) solid $main_text_color;
+      @include border(rem(1px), $main_text_color, $main_text_color--dark);
     }
 
     &_svg {
@@ -86,14 +90,14 @@
 
   &_lang {
     cursor: pointer;
-    border: rem(1px) solid $border_color;
+    @include border(rem(1px), $border_color, $border_color--dark);
     border-radius: rem(2px);
     margin-top: rem(8px);
     width: rem(26px);
     height: rem(26px);
 
     &:hover {
-      border: rem(1px) solid $main_text_color;
+      @include border(rem(1px), $main_text_color, $main_text_color--dark);
     }
 
     &_svg {
@@ -108,21 +112,21 @@
   &_list {
     margin-top: rem(8px);
     margin-bottom: rem(8px);
-    border: rem(1px) solid $border_color;
+    @include border(rem(1px), $border_color, $border_color--dark);
     padding: rem(9px);
     border-radius: rem(2px);
   }
 
   &_item {
     cursor: pointer;
-    border: rem(3px) solid $border_color;
+    @include border(rem(3px), $border_color, $border_color--dark);
     margin-top: rem(5px);
     height: rem(20px);
     position: relative;
 
     &_active {
       cursor: pointer;
-      border: rem(3px) solid $main_text_color;
+      @include border(rem(3px), $main_text_color, $main_text_color--dark);
       margin-top: rem(5px);
       height: rem(20px);
       position: relative;
@@ -137,20 +141,18 @@
     }
 
     &:hover {
-      border: rem(3px) solid $active_text_color;
+      @include border(rem(3px), $active_text_color, $active_text_color--dark);
     }
   }
 }
+
 [data-theme="dark"] .controls {
-  border: $border_color--dark;
   &_arrow {
-    border: rem(1px) solid $border_color--dark;
     &::before {
       border-right: rem(3px) solid $border_color--dark;
       border-top: rem(3px) solid $border_color--dark;
     }
     &:hover {
-      border: rem(1px) solid $main_text_color--dark;
       &::before {
         border-right: rem(3px) solid $active_text_color--dark;
         border-top: rem(3px) solid $active_text_color--dark;
@@ -158,31 +160,13 @@
     }
   }
   &_theme {
-    border: rem(1px) solid $main_text_color--dark;
-
     &_svg {
       fill: $active_text_color--dark;
     }
   }
   &_lang {
-    border: rem(1px) solid $border_color--dark;
-    &:hover {
-      border: rem(1px) solid $main_text_color--dark;
-    }
     &:hover .controls_lang_svg {
       fill: $active_text_color--dark;
-    }
-  }
-  &_list {
-    border: rem(1px) solid $border_color--dark;
-  }
-  &_item {
-    border: rem(3px) solid $border_color--dark;
-    &_active {
-      border: rem(3px) solid $main_text_color--dark;
-    }
-    &:hover {
-      border: rem(3px) solid $active_text_color--dark;
     }
   }
 }

@@ -1,0 +1,18 @@
+@import "../../common/styles/mixins.scss";
+@import "../../common/styles/variables.scss";
+
+.container {
+  width: rem(1100px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.error {
+  display: flex;
+  width: 100%;
+  flex-grow: 1;
+  justify-content: center;
+  align-items: center;
+}

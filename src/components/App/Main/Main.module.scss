@@ -1,0 +1,13 @@
+@import "../../../common/styles/mixins.scss";
+@import "../../../common/styles/variables.scss";
+
+* {
+  transition: 0.3s;
+}
+.Wrapper {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  @include background-color($main_body_color, $main_body_color--dark);
+}
