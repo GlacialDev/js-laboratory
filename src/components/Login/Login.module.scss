@@ -15,4 +15,57 @@
   flex-grow: 1;
   justify-content: center;
   align-items: center;
+
+  &_window {
+    display: flex;
+    flex-direction: column;
+    height: 80vh;
+    width: 50%;
+    min-width: rem(550px);
+  }
+
+  &_navbar {
+    width: 100%;
+    &_list {
+      display: flex;
+      flex-direction: row;
+    }
+
+    &_item {
+      width: 33.33%;
+      text-align: center;
+      @include color($main_text_color, $main_text_color--dark);
+      @include background-color($main_head_color, $main_head_color--dark);
+      @include border(rem(1px), $border_color, $border_color--dark);
+      @include without-border(right);
+      @include fonts-text();
+
+      &:last-child {
+        @include border(rem(1px), $border_color, $border_color--dark);
+      }
+    }
+
+    &_link {
+      display: block;
+      padding: rem(8px);
+      width: 100%;
+      height: 100%;
+
+      &:hover {
+        @include color($active_text_color, $active_text_color--dark);
+      }
+
+      &_active {
+        @include color($active_text_color, $active_text_color--dark);
+      }
+    }
+  }
+
+  &_tabs {
+    width: 100%;
+    // flex-grow: 1;
+    @include background-color($main_head_color, $main_head_color--dark);
+    @include border(rem(1px), $border_color, $border_color--dark);
+    @include without-border(top);
+  }
 }

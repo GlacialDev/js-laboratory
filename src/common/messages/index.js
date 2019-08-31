@@ -1,5 +1,13 @@
 export default {
   ru: {
+    "login.login": "Войти",
+    "login.registration": "Регистрация",
+    "login.passchange": "Сменить пароль",
+    "login.nickname_input": "Введите никнейм",
+    "login.email_input": "Введите почту",
+    "login.password_input": "Введите пароль",
+    "login.remember": "Запомнить меня",
+    "login.login_button": "Войти",
     "header.main": "Главная",
     "header.library": "Библиотека",
     "header.blog": "Блог",
@@ -38,6 +46,14 @@ export default {
 Связаться со мной можно любым из перечисленных слева способов, все ресурсы регулярно просматриваю.`
   },
   en: {
+    "login.login": "Log in",
+    "login.registration": "Registration",
+    "login.passchange": "Change password",
+    "login.nickname_input": "Enter your nickname",
+    "login.email_input": "Enter email adress",
+    "login.password_input": "Enter password",
+    "login.remember": "Remember me",
+    "login.login_button": "Log in",
     "header.main": "Main",
     "header.library": "Library",
     "header.blog": "Blog",

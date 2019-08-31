@@ -17,27 +17,28 @@ function Login({ match }) {
             <ul className={styles.login_navbar_list}>
               <li className={styles.login_navbar_item}>
                 <NavLink
+                  exact
                   to={`${match.url}`}
-                  className={styles.navLink}
-                  activeClassName={styles.navLink_active}
+                  className={styles.login_navbar_link}
+                  activeClassName={styles.login_navbar_link_active}
                 >
                   <FormattedMessage id="login.login" />
                 </NavLink>
               </li>
-              <li className={styles.login_tabs_item}>
+              <li className={styles.login_navbar_item}>
                 <NavLink
                   to={`${match.url}/registration`}
-                  className={styles.navLink}
-                  activeClassName={styles.navLink_active}
+                  className={styles.login_navbar_link}
+                  activeClassName={styles.login_navbar_link_active}
                 >
                   <FormattedMessage id="login.registration" />
                 </NavLink>
               </li>
-              <li className={styles.login_tabs_item}>
+              <li className={styles.login_navbar_item}>
                 <NavLink
                   to={`${match.url}/passchange`}
-                  className={styles.navLink}
-                  activeClassName={styles.navLink_active}
+                  className={styles.login_navbar_link}
+                  activeClassName={styles.login_navbar_link_active}
                 >
                   <FormattedMessage id="login.passchange" />
                 </NavLink>

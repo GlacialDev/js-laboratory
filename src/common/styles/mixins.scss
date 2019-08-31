@@ -51,6 +51,30 @@
   }
 }
 
+@mixin without-border($direction) {
+  @if ($direction == "top") {
+    border-top: none;
+    [data-theme="dark"] & {
+      border-top: none;
+    }
+  } @else if ($direction == "bottom") {
+    border-bottom: none;
+    [data-theme="dark"] & {
+      border-bottom: none;
+    }
+  } @else if ($direction == "left") {
+    border-left: none;
+    [data-theme="dark"] & {
+      border-left: none;
+    }
+  } @else if ($direction == "right") {
+    border-right: none;
+    [data-theme="dark"] & {
+      border-right: none;
+    }
+  }
+}
+
 @mixin background-color($color, $color--dark) {
   background-color: $color;
 
@@ -86,6 +110,20 @@
   );
   @include border(rem(2px), $active_text_color, $active_text_color--dark);
   @include fonts-text();
+}
+
+@mixin input() {
+  padding: rem(8px);
+  border-radius: rem(8px);
+  @include border(rem(1px), $border_color, $border_color--dark);
+
+  &:focus {
+    @include border(
+      rem(1px),
+      $active_text_color,
+      darken($active_text_color--dark, 10%)
+    );
+  }
 }
 
 // media queries
