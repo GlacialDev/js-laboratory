@@ -1,14 +1,15 @@
 import React, { Component } from "react";
-import styles from "./LoginTab.module.scss";
+import styles from "./SignUpTab.module.scss";
 import { injectIntl, FormattedMessage } from "react-intl";
 
-class LoginTab extends Component {
+class SignUpTab extends Component {
   state = {
     values: {
       nickname: "",
-      password: ""
-    },
-    remember: false
+      email: "",
+      password: "",
+      repeatPassword: ""
+    }
   };
 
   handleChange = event => {
@@ -18,18 +19,20 @@ class LoginTab extends Component {
     });
   };
 
-  handleCheckbox = event => {
-    this.setState({ remember: event.target.checked });
-  };
-
   render() {
-    let { values, remember } = this.state;
+    let { values } = this.state;
     let { intl } = this.props;
     const nicknamePlaceholder = intl.formatMessage({
       id: "login.nickname_input"
     });
+    const emailPlaceholder = intl.formatMessage({
+      id: "login.email_input"
+    });
     const passwordPlaceholder = intl.formatMessage({
       id: "login.password_input"
+    });
+    const repeatPasswordPlaceholder = intl.formatMessage({
+      id: "login.repeat_password_input"
     });
     const fields = [
       {
@@ -38,9 +41,19 @@ class LoginTab extends Component {
         placeholder: nicknamePlaceholder
       },
       {
+        type: "text",
+        name: "email",
+        placeholder: emailPlaceholder
+      },
+      {
         type: "password",
         name: "password",
         placeholder: passwordPlaceholder
+      },
+      {
+        type: "password",
+        name: "repeatPassword",
+        placeholder: repeatPasswordPlaceholder
       }
     ];
 
@@ -57,24 +70,12 @@ class LoginTab extends Component {
             key={index}
           />
         ))}
-        <div className={styles.checkbox}>
-          <input
-            id="login_checkbox"
-            className={styles.checkbox_input}
-            type="checkbox"
-            checked={remember}
-            onChange={this.handleCheckbox}
-          />
-          <label htmlFor="login_checkbox" className={styles.checkbox_label}>
-            <FormattedMessage id="login.remember" />
-          </label>
-        </div>
         <button className={styles.button}>
-          <FormattedMessage id="login.login_button" />
+          <FormattedMessage id="login.register_button" />
         </button>
       </div>
     );
   }
 }
 
-export default injectIntl(LoginTab);
+export default injectIntl(SignUpTab);
