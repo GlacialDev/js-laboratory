@@ -23,7 +23,7 @@ function SignInTab({ intl }) {
       placeholder: passwordPlaceholder
     }
   ];
-  const schema = yup.object().shape({
+  const signinSchema = yup.object().shape({
     nickname: yup
       .string()
       .min(6, "Too short")
@@ -44,11 +44,13 @@ function SignInTab({ intl }) {
         nickname: "",
         password: ""
       }}
+      validationSchema={signinSchema}
       onSubmit={values => {
-        schema.validate(values).catch(err => console.log(err));
-        schema.isValid(values).then(valid => console.log(valid));
+        // signupSchema.validate(values).catch(err => console.log(err));
+        signinSchema.isValid(values).then(valid => console.log(valid));
+        // console.log(values);
       }}
-      render={() => (
+      render={({ errors, touched }) => (
         <Form className={styles.container}>
           {fields.map(({ type, placeholder, name }, index) => (
             <React.Fragment key={index}>
@@ -60,11 +62,11 @@ function SignInTab({ intl }) {
                 key={index}
                 required
               />
-              {/* <div>
-                {errors.email && touched.email ? (
-                  <div>{errors.email}</div>
+              <div>
+                {errors[name] && touched[name] ? (
+                  <div>{errors[name]}</div>
                 ) : null}
-              </div> */}
+              </div>
             </React.Fragment>
           ))}
           <div className={styles.checkbox}>

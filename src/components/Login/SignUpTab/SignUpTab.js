@@ -40,7 +40,7 @@ function SignUpTab({ intl }) {
       placeholder: repeatPasswordPlaceholder
     }
   ];
-  const schema = yup.object().shape({
+  const signupSchema = yup.object().shape({
     nickname: yup
       .string()
       .min(6, "Too short")
@@ -69,21 +69,30 @@ function SignUpTab({ intl }) {
         password: "",
         repeatPassword: ""
       }}
+      validationSchema={signupSchema}
       onSubmit={values => {
-        schema.validate(values).catch(err => console.log(err));
-        schema.isValid(values).then(valid => console.log(valid));
+        // signupSchema.validate(values).catch(err => console.log(err));
+        signupSchema.isValid(values).then(valid => console.log(valid));
+        // console.log(values);
       }}
-      render={() => (
+      render={({ errors, touched }) => (
         <Form className={styles.container}>
           {fields.map(({ type, placeholder, name }, index) => (
-            <Field
-              className={styles.input}
-              type={type}
-              placeholder={placeholder}
-              name={name}
-              key={index}
-              required
-            />
+            <React.Fragment key={index}>
+              <Field
+                className={styles.input}
+                type={type}
+                placeholder={placeholder}
+                name={name}
+                key={index}
+                required
+              />
+              <div>
+                {errors[name] && touched[name] ? (
+                  <div>{errors[name]}</div>
+                ) : null}
+              </div>
+            </React.Fragment>
           ))}
           <button className={styles.button} type="submit">
             <FormattedMessage id="login.register_button" />
