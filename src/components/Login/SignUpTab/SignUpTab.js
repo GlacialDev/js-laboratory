@@ -3,6 +3,7 @@ import styles from "./SignUpTab.module.scss";
 import { injectIntl, FormattedMessage } from "react-intl";
 // import { createUser } from "../../../common/api/user";
 import { Formik, Field, Form } from "formik";
+import * as yup from "yup";
 
 function SignUpTab({ intl }) {
   const nicknamePlaceholder = intl.formatMessage({
@@ -39,23 +40,28 @@ function SignUpTab({ intl }) {
       placeholder: repeatPasswordPlaceholder
     }
   ];
+  const schema = yup.object().shape({
+    nickname: yup
+      .string()
+      .min(6, "Too short")
+      .required(),
+    email: yup.string().email(),
+    password: yup
+      .string()
+      .required("Password is Required.")
+      .max(13, "Too long")
+      .min(8, "Too short"),
+    repeatPassword: yup
+      .string()
+      .required("Password is Required.")
+      .max(13, "Too long")
+      .min(8, "Too short"),
+    createdOn: yup.date().default(function() {
+      return new Date();
+    })
+  });
 
   return (
-    // {fields.map(({ type, placeholder, name }, index) => (
-    //     <input
-    //       className={styles.input}
-    //       type={type}
-    //       placeholder={placeholder}
-    //       name={name}
-    //       value={values[name]}
-    //       onChange={this.handleChange}
-    //       key={index}
-    //       required
-    //     />
-    //   ))}
-    //   <button className={styles.button} onClick={this.handleButton}>
-    //     <FormattedMessage id="login.register_button" />
-    //   </button>
     <Formik
       initialValues={{
         nickname: "",
@@ -64,7 +70,8 @@ function SignUpTab({ intl }) {
         repeatPassword: ""
       }}
       onSubmit={values => {
-        console.log(values);
+        schema.validate(values).catch(err => console.log(err));
+        schema.isValid(values).then(valid => console.log(valid));
       }}
       render={() => (
         <Form className={styles.container}>
