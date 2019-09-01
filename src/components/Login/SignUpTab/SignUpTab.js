@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import styles from "./SignUpTab.module.scss";
 import { injectIntl, FormattedMessage } from "react-intl";
+import { createUser } from "../../../common/api/user";
 
 class SignUpTab extends Component {
   state = {
@@ -17,6 +18,17 @@ class SignUpTab extends Component {
     this.setState({
       values: { ...values, [event.target.name]: event.target.value }
     });
+  };
+
+  handleButton = async event => {
+    const { nickname, email, password } = this.state.values;
+    let req = await createUser("/api/user/create", {
+      nickname,
+      email,
+      password
+    });
+
+    console.log(req);
   };
 
   render() {
@@ -41,7 +53,7 @@ class SignUpTab extends Component {
         placeholder: nicknamePlaceholder
       },
       {
-        type: "text",
+        type: "email",
         name: "email",
         placeholder: emailPlaceholder
       },
@@ -68,9 +80,10 @@ class SignUpTab extends Component {
             value={values[name]}
             onChange={this.handleChange}
             key={index}
+            required
           />
         ))}
-        <button className={styles.button}>
+        <button className={styles.button} onClick={this.handleButton}>
           <FormattedMessage id="login.register_button" />
         </button>
       </div>

@@ -63,7 +63,6 @@
 
   &_tabs {
     width: 100%;
-    // flex-grow: 1;
     @include background-color($main_head_color, $main_head_color--dark);
     @include border(rem(1px), $border_color, $border_color--dark);
     @include without-border(top);

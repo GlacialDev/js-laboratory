@@ -55,6 +55,7 @@ class SignInTab extends Component {
             value={values[name]}
             onChange={this.handleChange}
             key={index}
+            required
           />
         ))}
         <div className={styles.checkbox}>
