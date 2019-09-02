@@ -1,5 +1,5 @@
-exports.createUser = data => {
-  return fetch("/api/user/create", {
+exports.signUp = data => {
+  return fetch("/api/user/signup", {
     method: "POST",
     mode: "same-origin",
     headers: {

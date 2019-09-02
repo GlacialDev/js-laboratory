@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styles from "./SignUpTab.module.scss";
 import { injectIntl, FormattedMessage } from "react-intl";
 import { NavLink } from "react-router-dom";
-import { createUser } from "../../../common/api/user";
+import { signUp } from "../../../common/api/user";
 import { Formik, Field, Form } from "formik";
 import * as yup from "yup";
 
@@ -98,9 +98,7 @@ function SignUpTab({ intl }) {
       .oneOf([yup.ref("password")], repeatPasswordError)
       .required(passwordError)
       .trim(),
-    createdOn: yup.date().default(function() {
-      return new Date();
-    })
+    createdOn: yup.date().default(new Date())
   });
   const [serverAnswerCode, setServerAnswerCode] = useState(0);
 
@@ -110,13 +108,14 @@ function SignUpTab({ intl }) {
         nickname: "",
         email: "",
         password: "",
-        repeatPassword: ""
+        repeatPassword: "",
+        createdOn: new Date()
       }}
       validationSchema={signupSchema}
       onSubmit={data => {
         signupSchema.isValid(data).then(valid => {
           if (valid) {
-            createUser(data).then(response => {
+            signUp(data).then(response => {
               setServerAnswerCode(response.answer.code);
             });
           }
