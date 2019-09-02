@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./SignUpTab.module.scss";
 import { injectIntl, FormattedMessage } from "react-intl";
-// import { createUser } from "../../../common/api/user";
+import { NavLink } from "react-router-dom";
+import { createUser } from "../../../common/api/user";
 import { Formik, Field, Form } from "formik";
 import * as yup from "yup";
 
@@ -87,6 +88,7 @@ function SignUpTab({ intl }) {
       return new Date();
     })
   });
+  const [serverAnswerCode, setServerAnswerCode] = useState(0);
 
   return (
     <Formik
@@ -97,13 +99,23 @@ function SignUpTab({ intl }) {
         repeatPassword: ""
       }}
       validationSchema={signupSchema}
-      onSubmit={values => {
-        // signupSchema.validate(values).catch(err => console.log(err));
-        signupSchema.isValid(values).then(valid => console.log(valid));
-        // console.log(values);
+      onSubmit={data => {
+        signupSchema.isValid(data).then(valid => {
+          if (valid)
+            createUser(data).then(response => {
+              setServerAnswerCode(response.answer.code);
+            });
+        });
       }}
       render={({ errors, touched }) => (
         <Form className={styles.container}>
+          <div
+            className={
+              serverAnswerCode === "1000" ? styles.success : styles.error
+            }
+          >
+            {serverAnswerCode ? renderServerAnswer(serverAnswerCode) : null}
+          </div>
           {fields.map(({ type, placeholder, name }, index) => (
             <React.Fragment key={index}>
               <Field
@@ -127,6 +139,40 @@ function SignUpTab({ intl }) {
         </Form>
       )}
     />
+  );
+}
+
+function renderServerAnswer(arg) {
+  let text = "";
+
+  switch (arg) {
+    case "1000":
+      text = "Регистрация прошла успешно!";
+      break;
+    case "1001":
+      text = "Этот никнейм уже занят";
+      break;
+    case "1002":
+      text = "Такая почта уже зарегистрирована";
+      break;
+    default:
+      text = "Регистрация прошла успешно!";
+      break;
+  }
+
+  return (
+    <div className={arg === "1000" ? styles.success_text : styles.error_text}>
+      {text}
+      {arg === "1000" ? (
+        <NavLink
+          to={`/login`}
+          className={styles.login_navbar_link}
+          activeClassName={styles.login_navbar_link_active}
+        >
+          <FormattedMessage id="login.login" />
+        </NavLink>
+      ) : null}
+    </div>
   );
 }
 

@@ -1,6 +1,5 @@
-exports.createUser = (url, data) => {
-  console.log(url, data);
-  return fetch(url, {
+exports.createUser = data => {
+  return fetch("/api/user/create", {
     method: "POST",
     mode: "same-origin",
     headers: {

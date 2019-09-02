@@ -22,11 +22,38 @@
   @include button();
 }
 
-.error {
+.error,
+.success {
   width: 80%;
   margin-top: rem(2px);
-
+}
+.error {
   &_text {
     @include error();
+  }
+}
+.success {
+  &_text {
+    font-size: rem(14px);
+    padding: rem(4px);
+    text-align: center;
+    @include color($main_text_color, $main_text_color--dark);
+    @include background-color($main_head_color, $main_head_color--dark);
+  }
+}
+
+.login_navbar {
+  &_link {
+    display: inline-block;
+    padding: rem(8px);
+
+    &:hover {
+      @include color($active_text_color, $active_text_color--dark);
+      text-decoration: underline;
+    }
+
+    &_active {
+      @include color($active_text_color, $active_text_color--dark);
+    }
   }
 }
