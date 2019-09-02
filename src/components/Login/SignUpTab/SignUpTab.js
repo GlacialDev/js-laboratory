@@ -18,6 +18,27 @@ function SignUpTab({ intl }) {
   const repeatPasswordPlaceholder = intl.formatMessage({
     id: "login.repeat_password_input"
   });
+  const nicknameError = intl.formatMessage({
+    id: "error.nickname_error"
+  });
+  const emailError = intl.formatMessage({
+    id: "error.email_error"
+  });
+  const emailIncorrectError = intl.formatMessage({
+    id: "error.email_incorrect_error"
+  });
+  const passwordError = intl.formatMessage({
+    id: "error.password_error"
+  });
+  const repeatPasswordError = intl.formatMessage({
+    id: "error.repeat_password_error"
+  });
+  const tooShortError = intl.formatMessage({
+    id: "error.too_short_error"
+  });
+  const tooLongError = intl.formatMessage({
+    id: "error.too_long_error"
+  });
   const fields = [
     {
       type: "text",
@@ -43,19 +64,25 @@ function SignUpTab({ intl }) {
   const signupSchema = yup.object().shape({
     nickname: yup
       .string()
-      .min(6, "Too short")
-      .required(),
-    email: yup.string().email(),
+      .min(6, tooShortError + "6")
+      .required(nicknameError)
+      .trim(),
+    email: yup
+      .string()
+      .email(emailIncorrectError)
+      .required(emailError)
+      .trim(),
     password: yup
       .string()
-      .required("Password is Required.")
-      .max(13, "Too long")
-      .min(8, "Too short"),
+      .max(30, tooLongError + "30")
+      .min(8, tooShortError + "8")
+      .required(passwordError)
+      .trim(),
     repeatPassword: yup
       .string()
-      .required("Password is Required.")
-      .max(13, "Too long")
-      .min(8, "Too short"),
+      .oneOf([yup.ref("password")], repeatPasswordError)
+      .required(passwordError)
+      .trim(),
     createdOn: yup.date().default(function() {
       return new Date();
     })
@@ -87,9 +114,9 @@ function SignUpTab({ intl }) {
                 key={index}
                 required
               />
-              <div>
+              <div className={styles.error}>
                 {errors[name] && touched[name] ? (
-                  <div>{errors[name]}</div>
+                  <div className={styles.error_text}>{errors[name]}</div>
                 ) : null}
               </div>
             </React.Fragment>

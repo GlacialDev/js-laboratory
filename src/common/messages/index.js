@@ -1,5 +1,12 @@
 export default {
   ru: {
+    "error.nickname_error": "Необходимо ввести никнейм",
+    "error.email_error": "Необходимо ввести почту",
+    "error.email_incorrect_error": "Необходимо ввести корректный адрес почты",
+    "error.password_error": "Необходимо ввести пароль",
+    "error.repeat_password_error": "Пароли должны совпадать",
+    "error.too_short_error": "Слишком мало символов. Минимальное количество: ",
+    "error.too_long_error": "Слишком много символов. Максимальное количество: ",
     "login.login": "Войти",
     "login.registration": "Зарегистрироваться",
     "login.passchange": "Сменить пароль",
@@ -48,6 +55,13 @@ export default {
 Связаться со мной можно любым из перечисленных слева способов, все ресурсы регулярно просматриваю.`
   },
   en: {
+    "error.nickname_error": "Nickname is required",
+    "error.email_error": "Email is required",
+    "error.email_incorrect_error": "You must enter a valid email address",
+    "error.password_error": "Password is required",
+    "error.repeat_password_error": "Passwords must be the same",
+    "error.too_short_error": "Too few characters. Minimum number: ",
+    "error.too_long_error": "Too many characters. Maximum number: ",
     "login.login": "Sign in",
     "login.registration": "Sign up",
     "login.passchange": "Change password",

@@ -11,6 +11,12 @@ function SignInTab({ intl }) {
   const passwordPlaceholder = intl.formatMessage({
     id: "login.password_input"
   });
+  const nicknameError = intl.formatMessage({
+    id: "error.nickname_error"
+  });
+  const passwordError = intl.formatMessage({
+    id: "error.password_error"
+  });
   const fields = [
     {
       type: "text",
@@ -26,23 +32,24 @@ function SignInTab({ intl }) {
   const signinSchema = yup.object().shape({
     nickname: yup
       .string()
-      .min(6, "Too short")
-      .required(),
+      .required(nicknameError)
+      .trim(),
     password: yup
       .string()
-      .required("Password is Required.")
-      .max(13, "Too long")
-      .min(8, "Too short"),
-    createdOn: yup.date().default(function() {
-      return new Date();
-    })
+      .required(passwordError)
+      .trim(),
+    remember: yup
+      .boolean()
+      .default(false)
+      .notRequired()
   });
 
   return (
     <Formik
       initialValues={{
         nickname: "",
-        password: ""
+        password: "",
+        remember: false
       }}
       validationSchema={signinSchema}
       onSubmit={values => {
@@ -62,15 +69,16 @@ function SignInTab({ intl }) {
                 key={index}
                 required
               />
-              <div>
+              <div className={styles.error}>
                 {errors[name] && touched[name] ? (
-                  <div>{errors[name]}</div>
+                  <div className={styles.error_text}>{errors[name]}</div>
                 ) : null}
               </div>
             </React.Fragment>
           ))}
           <div className={styles.checkbox}>
             <Field
+              name="remember"
               id="login_checkbox"
               className={styles.checkbox_input}
               type="checkbox"

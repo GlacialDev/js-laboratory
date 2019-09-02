@@ -126,6 +126,16 @@
   }
 }
 
+@mixin error() {
+  font-size: rem(14px);
+  padding: rem(4px);
+  border-radius: rem(8px);
+  text-align: center;
+  @include color($main_text_color, $main_text_color--dark);
+  @include border(rem(1px), $border_color, $border_color--dark);
+  @include background-color($error_color, $error_color--dark);
+}
+
 // media queries
 
 @mixin mobile-portrait {
