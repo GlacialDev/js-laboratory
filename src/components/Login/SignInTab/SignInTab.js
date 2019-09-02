@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./SignInTab.module.scss";
 import { injectIntl, FormattedMessage } from "react-intl";
+import { Redirect } from "react-router";
 import { Formik, Field, Form } from "formik";
+import { signIn } from "../../../common/api/user";
 import * as yup from "yup";
 
 function SignInTab({ intl }) {
@@ -17,6 +19,14 @@ function SignInTab({ intl }) {
   const passwordError = intl.formatMessage({
     id: "error.password_error"
   });
+  const signinErrorCodes = {
+    "1004": intl.formatMessage({
+      id: "error.code_1004"
+    }),
+    "1005": intl.formatMessage({
+      id: "error.code_1005"
+    })
+  };
   const fields = [
     {
       type: "text",
@@ -43,6 +53,7 @@ function SignInTab({ intl }) {
       .default(false)
       .notRequired()
   });
+  const [serverAnswerCode, setServerAnswerCode] = useState(0);
 
   return (
     <Formik
@@ -52,13 +63,22 @@ function SignInTab({ intl }) {
         remember: false
       }}
       validationSchema={signinSchema}
-      onSubmit={values => {
-        // signupSchema.validate(values).catch(err => console.log(err));
-        signinSchema.isValid(values).then(valid => console.log(valid));
-        // console.log(values);
+      onSubmit={data => {
+        signinSchema.isValid(data).then(valid => {
+          if (valid) {
+            signIn(data).then(response => {
+              setServerAnswerCode(response.answer.code);
+            });
+          }
+        });
       }}
       render={({ errors, touched }) => (
         <Form className={styles.container}>
+          <div className={serverAnswerCode === "1003" ? null : styles.error}>
+            {serverAnswerCode
+              ? renderServerAnswer(serverAnswerCode, signinErrorCodes)
+              : null}
+          </div>
           {fields.map(({ type, placeholder, name }, index) => (
             <React.Fragment key={index}>
               <Field
@@ -93,6 +113,28 @@ function SignInTab({ intl }) {
         </Form>
       )}
     />
+  );
+}
+
+function renderServerAnswer(arg, messages) {
+  let text = "";
+
+  switch (arg) {
+    case "1004":
+      text = messages[arg];
+      break;
+    case "1005":
+      text = messages[arg];
+      break;
+    default:
+      break;
+  }
+
+  return (
+    <div className={styles.error_text}>
+      {text}
+      {arg === "1003" ? <Redirect to="/" /> : null}
+    </div>
   );
 }
 

@@ -10,6 +10,8 @@ export default {
     "error.code_1000": "Регистрация прошла успешно!",
     "error.code_1001": "Этот никнейм уже занят",
     "error.code_1002": "Такая почта уже зарегистрирована",
+    "error.code_1004": "Такого пользователя не существует",
+    "error.code_1005": "Неверный пароль",
     "error.code_default":
       "Извините, случилась какая-то внутренняя ошибка на сервере",
     "login.login": "Войти",
@@ -70,6 +72,8 @@ export default {
     "error.code_1000": "Registration completed successfully!",
     "error.code_1001": "This nickname is already taken",
     "error.code_1002": "This email is already registered",
+    "error.code_1004": "User doesn't exist",
+    "error.code_1005": "Wrong password",
     "error.code_default":
       "Sorry, there was some internal error occurred on the server",
     "login.login": "Sign in",
