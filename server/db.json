@@ -1,3 +1,11 @@
 {
-  "users": []
+  "users": [
+    {
+      "id": "488d7afe-19a9-4b74-9995-1ccf2d5ffd9d",
+      "nickname": "111111",
+      "email": "111@gmail.com",
+      "hash": "$2a$10$WYUHp8lyOUwcgO8lpsXChegBpLbEMzYNCxesZQ4XP3fJFCaNaNCMu",
+      "createdOn": "2019-09-02T18:44:10.127Z"
+    }
+  ]
 }
