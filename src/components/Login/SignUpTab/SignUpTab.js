@@ -40,6 +40,20 @@ function SignUpTab({ intl }) {
   const tooLongError = intl.formatMessage({
     id: "error.too_long_error"
   });
+  const signupErrorCodes = {
+    "1000": intl.formatMessage({
+      id: "error.code_1000"
+    }),
+    "1001": intl.formatMessage({
+      id: "error.code_1001"
+    }),
+    "1002": intl.formatMessage({
+      id: "error.code_1002"
+    }),
+    default: intl.formatMessage({
+      id: "error.code_default"
+    })
+  };
   const fields = [
     {
       type: "text",
@@ -101,10 +115,11 @@ function SignUpTab({ intl }) {
       validationSchema={signupSchema}
       onSubmit={data => {
         signupSchema.isValid(data).then(valid => {
-          if (valid)
+          if (valid) {
             createUser(data).then(response => {
               setServerAnswerCode(response.answer.code);
             });
+          }
         });
       }}
       render={({ errors, touched }) => (
@@ -114,7 +129,9 @@ function SignUpTab({ intl }) {
               serverAnswerCode === "1000" ? styles.success : styles.error
             }
           >
-            {serverAnswerCode ? renderServerAnswer(serverAnswerCode) : null}
+            {serverAnswerCode
+              ? renderServerAnswer(serverAnswerCode, signupErrorCodes)
+              : null}
           </div>
           {fields.map(({ type, placeholder, name }, index) => (
             <React.Fragment key={index}>
@@ -142,21 +159,21 @@ function SignUpTab({ intl }) {
   );
 }
 
-function renderServerAnswer(arg) {
+function renderServerAnswer(arg, messages) {
   let text = "";
 
   switch (arg) {
     case "1000":
-      text = "Регистрация прошла успешно!";
+      text = messages[arg];
       break;
     case "1001":
-      text = "Этот никнейм уже занят";
+      text = messages[arg];
       break;
     case "1002":
-      text = "Такая почта уже зарегистрирована";
+      text = messages[arg];
       break;
     default:
-      text = "Регистрация прошла успешно!";
+      text = messages["default"];
       break;
   }
 
