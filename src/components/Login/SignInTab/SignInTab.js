@@ -68,6 +68,7 @@ function SignInTab({ intl }) {
           if (valid) {
             signIn(data).then(response => {
               setServerAnswerCode(response.answer.code);
+              localStorage.token = response.token;
             });
           }
         });

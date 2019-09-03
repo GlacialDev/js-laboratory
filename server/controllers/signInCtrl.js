@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 
 const signIn = async (req, res, db) => {
   const { nickname, password } = req.body;
-  const answer = { code: null };
+  const answer = { code: null, isAuth: false };
   const user = await utils.getValueFromDB(db, "users", { nickname });
 
   if (!user) {
@@ -18,8 +18,10 @@ const signIn = async (req, res, db) => {
     res.send({ answer });
   } else {
     answer.code = "success";
+    answer.isAuth = true;
     const token = jwt.sign(
       {
+        nickname: user.nickname,
         id: user.id
       },
       process.env.JWT_PRIVATE_KEY,
