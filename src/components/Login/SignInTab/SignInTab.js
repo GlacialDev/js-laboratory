@@ -20,11 +20,11 @@ function SignInTab({ intl }) {
     id: "error.password_error"
   });
   const signinErrorCodes = {
+    "1003": intl.formatMessage({
+      id: "error.code_1003"
+    }),
     "1004": intl.formatMessage({
       id: "error.code_1004"
-    }),
-    "1005": intl.formatMessage({
-      id: "error.code_1005"
     })
   };
   const fields = [
@@ -74,7 +74,7 @@ function SignInTab({ intl }) {
       }}
       render={({ errors, touched }) => (
         <Form className={styles.container}>
-          <div className={serverAnswerCode === "1003" ? null : styles.error}>
+          <div className={serverAnswerCode === "success" ? null : styles.error}>
             {serverAnswerCode
               ? renderServerAnswer(serverAnswerCode, signinErrorCodes)
               : null}
@@ -120,10 +120,10 @@ function renderServerAnswer(arg, messages) {
   let text = "";
 
   switch (arg) {
-    case "1004":
+    case "1003":
       text = messages[arg];
       break;
-    case "1005":
+    case "1004":
       text = messages[arg];
       break;
     default:
@@ -133,7 +133,7 @@ function renderServerAnswer(arg, messages) {
   return (
     <div className={styles.error_text}>
       {text}
-      {arg === "1003" ? <Redirect to="/" /> : null}
+      {arg === "success" ? <Redirect to="/" /> : null}
     </div>
   );
 }
