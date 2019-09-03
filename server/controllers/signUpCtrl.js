@@ -7,10 +7,8 @@ const signUp = async (req, res, db) => {
     console.log(err.details);
   });
   const { nickname, email, password, createdOn } = result;
-
   const isUserNicknameExists = utils.getValueFromDB(db, "users", { nickname });
   const isUserEmailExists = utils.getValueFromDB(db, "users", { email });
-
   const answer = { code: null };
 
   if (isUserNicknameExists) {
@@ -19,7 +17,7 @@ const signUp = async (req, res, db) => {
     answer.code = "1002";
   } else {
     let hash = await utils.getHash(password);
-    let id = await utils.getId();
+    let id = utils.getId();
     utils.pushValueIntoDB(db, "users", {
       id,
       nickname,

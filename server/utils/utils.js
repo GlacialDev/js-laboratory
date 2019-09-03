@@ -1,11 +1,12 @@
 const uuidv4 = require("uuid/v4");
 const bcrypt = require("bcryptjs");
 
-const getValueFromDB = (db, collection, paramObj) => {
-  return db
+const getValueFromDB = async (db, collection, paramObj) => {
+  let value = await db
     .get(collection)
     .find(paramObj)
     .value();
+  return value;
 };
 
 const pushValueIntoDB = async (db, collection, paramObj) => {
@@ -16,15 +17,13 @@ const pushValueIntoDB = async (db, collection, paramObj) => {
 };
 
 const getId = () => {
-  return new Promise((resolve, reject) => {
-    resolve(uuidv4());
-  });
+  return uuidv4();
 };
 
 const getHash = password => {
   return new Promise((resolve, reject) => {
-    bcrypt.genSalt(10, function(err, salt) {
-      bcrypt.hash(password, salt, function(err, hash) {
+    bcrypt.genSalt(10, (err, salt) => {
+      bcrypt.hash(password, salt, (err, hash) => {
         resolve(hash);
       });
     });
