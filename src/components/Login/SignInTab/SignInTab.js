@@ -5,6 +5,7 @@ import { Redirect } from "react-router";
 import { Formik, Field, Form } from "formik";
 import { signIn } from "../../../common/api/user";
 import * as yup from "yup";
+import { ContextConsumer } from "../../../common/context/Context";
 
 function SignInTab({ intl }) {
   const nicknamePlaceholder = intl.formatMessage({
@@ -47,73 +48,66 @@ function SignInTab({ intl }) {
     password: yup
       .string()
       .required(passwordError)
-      .trim(),
-    remember: yup
-      .boolean()
-      .default(false)
-      .notRequired()
+      .trim()
   });
   const [serverAnswerCode, setServerAnswerCode] = useState(0);
 
   return (
-    <Formik
-      initialValues={{
-        nickname: "",
-        password: "",
-        remember: false
-      }}
-      validationSchema={signinSchema}
-      onSubmit={data => {
-        signinSchema.isValid(data).then(valid => {
-          if (valid) {
-            signIn(data).then(response => {
-              setServerAnswerCode(response.answer.code);
-              localStorage.token = response.token;
+    <ContextConsumer>
+      {context => (
+        <Formik
+          initialValues={{
+            nickname: "",
+            password: ""
+          }}
+          validationSchema={signinSchema}
+          onSubmit={data => {
+            signinSchema.isValid(data).then(valid => {
+              if (valid) {
+                signIn(data).then(response => {
+                  setServerAnswerCode(response.answer.code);
+                  context.setNickname(response.answer.nickname);
+                  context.setEmail(response.answer.email);
+                  context.setIsAuth(response.answer.isAuth);
+                  localStorage.token = response.token;
+                });
+              }
             });
-          }
-        });
-      }}
-      render={({ errors, touched }) => (
-        <Form className={styles.container}>
-          <div className={serverAnswerCode === "success" ? null : styles.error}>
-            {serverAnswerCode
-              ? renderServerAnswer(serverAnswerCode, signinErrorCodes)
-              : null}
-          </div>
-          {fields.map(({ type, placeholder, name }, index) => (
-            <React.Fragment key={index}>
-              <Field
-                className={styles.input}
-                type={type}
-                placeholder={placeholder}
-                name={name}
-                key={index}
-                required
-              />
-              <div className={styles.error}>
-                {errors[name] && touched[name] ? (
-                  <div className={styles.error_text}>{errors[name]}</div>
-                ) : null}
+          }}
+          render={({ errors, touched }) => (
+            <Form className={styles.container}>
+              <div
+                className={serverAnswerCode === "success" ? null : styles.error}
+              >
+                {serverAnswerCode
+                  ? renderServerAnswer(serverAnswerCode, signinErrorCodes)
+                  : null}
               </div>
-            </React.Fragment>
-          ))}
-          <div className={styles.checkbox}>
-            <Field
-              name="remember"
-              id="login_checkbox"
-              className={styles.checkbox_input}
-              type="checkbox"
-            />
-            <label htmlFor="login_checkbox" className={styles.checkbox_label}>
-              <FormattedMessage id="login.remember" />
-            </label>
-          </div>
-          <button className={styles.button} type="submit">
-            <FormattedMessage id="login.login_button" />
-          </button>
-        </Form>
+              {fields.map(({ type, placeholder, name }, index) => (
+                <React.Fragment key={index}>
+                  <Field
+                    className={styles.input}
+                    type={type}
+                    placeholder={placeholder}
+                    name={name}
+                    key={index}
+                    required
+                  />
+                  <div className={styles.error}>
+                    {errors[name] && touched[name] ? (
+                      <div className={styles.error_text}>{errors[name]}</div>
+                    ) : null}
+                  </div>
+                </React.Fragment>
+              ))}
+              <button className={styles.button} type="submit">
+                <FormattedMessage id="login.login_button" />
+              </button>
+            </Form>
+          )}
+        />
       )}
-    />
+    </ContextConsumer>
   );
 }
 

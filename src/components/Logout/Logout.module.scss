@@ -1,0 +1,35 @@
+@import "../../common/styles/mixins.scss";
+@import "../../common/styles/variables.scss";
+
+.container {
+  width: rem(1100px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.logout {
+  display: flex;
+  flex-direction: column;
+  padding: rem(16px);
+  width: 50%;
+  min-width: rem(550px);
+  @include border(rem(1px), $border_color, $border_color--dark);
+  @include background-color($main_head_color, $main_head_color--dark);
+
+  &_text {
+    padding: rem(16px);
+    text-align: center;
+    @include background-color($main_body_color, $main_body_color--dark);
+    @include border(rem(1px), $border_color, $border_color--dark);
+    @include color($main_text_color, $main_text_color--dark);
+  }
+
+  &_button {
+    margin-top: rem(16px);
+    align-self: center;
+    min-width: 33%;
+    @include button();
+  }
+}

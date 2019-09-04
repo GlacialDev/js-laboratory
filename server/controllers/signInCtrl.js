@@ -3,7 +3,12 @@ const jwt = require("jsonwebtoken");
 
 const signIn = async (req, res, db) => {
   const { nickname, password } = req.body;
-  const answer = { code: null, isAuth: false };
+  const answer = {
+    code: null,
+    nickname: "",
+    email: "",
+    isAuth: false
+  };
   const user = await utils.getValueFromDB(db, "users", { nickname });
 
   if (!user) {
@@ -18,6 +23,8 @@ const signIn = async (req, res, db) => {
     res.send({ answer });
   } else {
     answer.code = "success";
+    answer.nickname = user.nickname;
+    answer.email = user.email;
     answer.isAuth = true;
     const token = jwt.sign(
       {

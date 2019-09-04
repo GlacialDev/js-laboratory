@@ -1,7 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router } from "react-router-dom";
 import Main from "./Main";
-import { ContextProvider, ContextConsumer } from "../../common/context/Context";
 import { IntlProvider } from "react-intl";
 import messages from "../../common/messages";
 import { signInJWT } from "../../common/api/user";
@@ -12,31 +10,31 @@ import styles from "./App.module.scss";
 
 class App extends Component {
   componentDidMount() {
+    const { context } = this.props;
     const token = localStorage.token;
 
     if (token && token !== "") {
-      signInJWT({ token }).then(data => console.log(data));
+      signInJWT({ token }).then(response => {
+        const { nickname, email, isAuth } = response.answer;
+        context.setNickname(nickname);
+        context.setEmail(email);
+        context.setIsAuth(isAuth);
+      });
     }
   }
 
   render() {
+    const { context } = this.props;
+
     return (
-      <Router>
-        <ContextProvider>
-          <ContextConsumer>
-            {context => (
-              <IntlProvider
-                locale={context.state.locale}
-                messages={messages[context.state.locale]}
-              >
-                <div className={styles.App} data-theme={context.state.theme}>
-                  <Main />
-                </div>
-              </IntlProvider>
-            )}
-          </ContextConsumer>
-        </ContextProvider>
-      </Router>
+      <IntlProvider
+        locale={context.state.locale}
+        messages={messages[context.state.locale]}
+      >
+        <div className={styles.App} data-theme={context.state.theme}>
+          <Main />
+        </div>
+      </IntlProvider>
     );
   }
 }

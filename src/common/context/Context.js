@@ -62,7 +62,10 @@ export class ContextProvider extends Component {
 
   state = {
     theme: this.stateTheme ? this.stateTheme : "light",
-    locale: this.stateLocale ? this.stateLocale : "ru"
+    locale: this.stateLocale ? this.stateLocale : "ru",
+    nickname: "",
+    email: "",
+    isAuth: false
   };
 
   toggleTheme() {
@@ -83,13 +86,34 @@ export class ContextProvider extends Component {
     setCookie("locale", locale, { expires: 10 });
   }
 
+  setNickname(value) {
+    this.setState({
+      nickname: value
+    });
+  }
+
+  setEmail(value) {
+    this.setState({
+      email: value
+    });
+  }
+
+  setIsAuth(value) {
+    this.setState({
+      isAuth: value
+    });
+  }
+
   render() {
     return (
       <Context.Provider
         value={{
           state: this.state,
           toggleTheme: this.toggleTheme.bind(this),
-          toggleLocale: this.toggleLocale.bind(this)
+          toggleLocale: this.toggleLocale.bind(this),
+          setNickname: this.setNickname.bind(this),
+          setEmail: this.setEmail.bind(this),
+          setIsAuth: this.setIsAuth.bind(this)
         }}
       >
         {this.props.children}
