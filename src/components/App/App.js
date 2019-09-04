@@ -2,7 +2,11 @@ import React, { Component } from "react";
 import Main from "./Main";
 import { IntlProvider } from "react-intl";
 import messages from "../../common/messages";
-import { signInJWTRequest } from "../../common/api/user";
+import {
+  signInJWTRequest,
+  refreshAccessTokenRequest
+} from "../../common/api/user";
+import jwt_decode from "jwt-decode";
 
 import "normalize.css";
 import "../../common/styles/universal.scss";
@@ -11,13 +15,40 @@ import styles from "./App.module.scss";
 class App extends Component {
   componentDidMount() {
     const { context } = this.props;
-    const token = localStorage.token;
+    // Клиент(фронтенд) проверяет перед запросом не истекло ли время жизни access token'на
+    const { accessToken, refreshToken } = localStorage;
+    const decodedAccessToken = jwt_decode(accessToken);
+    const timeNow = new Date().getTime();
 
-    if (token && token !== "") {
-      signInJWTRequest({ token }).then(response =>
+    if (decodedAccessToken.exp < timeNow) {
+      // // Если истекло клиент отправляет на auth/refresh-token URL refresh token
+      // // https://gist.github.com/zmts/802dc9c3510d79fd40f9dc38a12bccfc
+      // // написать refreshAccessTokenRequest
+      // refreshAccessTokenRequest(refreshToken)
+      //   .then(response => {
+      //     // написать savenNewTokenPair
+      //     this.saveNewTokenPair(response);
+      //   })
+      //   .then(accessToken => {
+      //     signInJWTRequest(accessToken).then(response =>
+      //       this.signIn(response, context)
+      //     );
+      //   });
+    } else {
+      signInJWTRequest(accessToken).then(response =>
         this.signIn(response, context)
       );
     }
+
+    // if (token && token !== "") {
+    //   var decoded = jwt_decode(token);
+    //   const date = new Date().getTime();
+    //   console.log(date);
+    //   console.log(decoded.exp);
+    // signInJWTRequest({ token }).then(response =>
+    //   this.signIn(response, context)
+    // );
+    // }
   }
 
   signIn(response, context) {

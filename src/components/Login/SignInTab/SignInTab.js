@@ -79,7 +79,8 @@ function SignInTab({ intl }) {
     context.setNickname(response.answer.nickname);
     context.setEmail(response.answer.email);
     context.setIsAuth(response.answer.isAuth);
-    localStorage.token = response.token;
+    localStorage.accessToken = response.accessToken;
+    localStorage.refreshToken = response.refreshToken;
   }
 
   return (

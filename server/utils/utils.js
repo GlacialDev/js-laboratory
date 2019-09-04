@@ -16,6 +16,14 @@ const pushValueIntoDB = async (db, collection, paramObj) => {
     .write();
 };
 
+const updateItemInDB = async (db, collection, findObj, paramObj) => {
+  await db
+    .get(collection)
+    .find(findObj)
+    .assign(paramObj)
+    .write();
+};
+
 const getId = () => {
   return uuidv4();
 };
@@ -41,6 +49,7 @@ const comparePasswords = (password, hash) => {
 module.exports = {
   getValueFromDB,
   pushValueIntoDB,
+  updateItemInDB,
   getHash,
   comparePasswords,
   getId

@@ -26,7 +26,7 @@ const signIn = async (req, res, db) => {
     answer.nickname = user.nickname;
     answer.email = user.email;
     answer.isAuth = true;
-    const token = jwt.sign(
+    const accessToken = jwt.sign(
       {
         nickname: user.nickname,
         id: user.id
@@ -36,7 +36,19 @@ const signIn = async (req, res, db) => {
         expiresIn: "1h"
       }
     );
-    res.send({ answer, token });
+    const refreshToken = jwt.sign(
+      {
+        nickname: user.nickname,
+        id: user.id
+      },
+      process.env.JWT_PRIVATE_KEY,
+      {
+        expiresIn: "60d"
+      }
+    );
+    await utils.updateItemInDB(db, "users", { id: user.id }, { refreshToken });
+
+    res.send({ answer, accessToken, refreshToken });
   }
 };
 

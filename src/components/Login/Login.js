@@ -43,7 +43,7 @@ function Login({ match }) {
                   <Switch>
                     <Route exact path={`${match.url}`} component={SignInTab} />
                     <Route path={`${match.url}/signup`} component={SignUpTab} />
-                    <Route component={<Redirect to="/error" />} />
+                    <Route component={() => <Redirect to="/error" />} />
                   </Switch>
                 </div>
               </div>
