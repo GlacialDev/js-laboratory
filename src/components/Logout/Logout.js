@@ -12,6 +12,13 @@ function Logout({ intl }) {
     id: "logout.want_to_logout"
   });
 
+  function logout(context) {
+    localStorage.token = "";
+    context.setNickname("");
+    context.setEmail("");
+    context.setIsAuth(false);
+  }
+
   return (
     <ContextConsumer>
       {context =>
@@ -24,12 +31,7 @@ function Logout({ intl }) {
               <button
                 type="button"
                 className={styles.logout_button}
-                onClick={() => {
-                  localStorage.token = "";
-                  context.setNickname("");
-                  context.setEmail("");
-                  context.setIsAuth(false);
-                }}
+                onClick={() => logout(context)}
               >
                 {textWantToLogout}
               </button>

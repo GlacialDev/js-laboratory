@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Main from "./Main";
 import { IntlProvider } from "react-intl";
 import messages from "../../common/messages";
-import { signInJWT } from "../../common/api/user";
+import { signInJWTRequest } from "../../common/api/user";
 
 import "normalize.css";
 import "../../common/styles/universal.scss";
@@ -14,13 +14,17 @@ class App extends Component {
     const token = localStorage.token;
 
     if (token && token !== "") {
-      signInJWT({ token }).then(response => {
-        const { nickname, email, isAuth } = response.answer;
-        context.setNickname(nickname);
-        context.setEmail(email);
-        context.setIsAuth(isAuth);
-      });
+      signInJWTRequest({ token }).then(response =>
+        this.signIn(response, context)
+      );
     }
+  }
+
+  signIn(response, context) {
+    const { nickname, email, isAuth } = response.answer;
+    context.setNickname(nickname);
+    context.setEmail(email);
+    context.setIsAuth(isAuth);
   }
 
   render() {

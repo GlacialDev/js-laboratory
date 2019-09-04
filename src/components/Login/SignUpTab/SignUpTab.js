@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styles from "./SignUpTab.module.scss";
 import { injectIntl, FormattedMessage } from "react-intl";
 import { NavLink } from "react-router-dom";
-import { signUp } from "../../../common/api/user";
+import { signUpRequest } from "../../../common/api/user";
 import { Formik, Field, Form } from "formik";
 import * as yup from "yup";
 
@@ -102,6 +102,40 @@ function SignUpTab({ intl }) {
   });
   const [serverAnswerCode, setServerAnswerCode] = useState(0);
 
+  function renderServerAnswer(arg) {
+    let text = "";
+
+    switch (arg) {
+      case "1000":
+        text = signupErrorCodes[arg];
+        break;
+      case "1001":
+        text = signupErrorCodes[arg];
+        break;
+      case "1002":
+        text = signupErrorCodes[arg];
+        break;
+      default:
+        text = signupErrorCodes["default"];
+        break;
+    }
+
+    return (
+      <div className={arg === "1000" ? styles.success_text : styles.error_text}>
+        {text}
+        {arg === "1000" ? (
+          <NavLink
+            to={`/login`}
+            className={styles.login_navbar_link}
+            activeClassName={styles.login_navbar_link_active}
+          >
+            <FormattedMessage id="login.login" />
+          </NavLink>
+        ) : null}
+      </div>
+    );
+  }
+
   return (
     <Formik
       initialValues={{
@@ -115,7 +149,7 @@ function SignUpTab({ intl }) {
       onSubmit={data => {
         signupSchema.isValid(data).then(valid => {
           if (valid) {
-            signUp(data).then(response => {
+            signUpRequest(data).then(response => {
               setServerAnswerCode(response.answer.code);
             });
           }
@@ -128,9 +162,7 @@ function SignUpTab({ intl }) {
               serverAnswerCode === "1000" ? styles.success : styles.error
             }
           >
-            {serverAnswerCode
-              ? renderServerAnswer(serverAnswerCode, signupErrorCodes)
-              : null}
+            {serverAnswerCode ? renderServerAnswer(serverAnswerCode) : null}
           </div>
           {fields.map(({ type, placeholder, name }, index) => (
             <React.Fragment key={index}>
@@ -155,40 +187,6 @@ function SignUpTab({ intl }) {
         </Form>
       )}
     />
-  );
-}
-
-function renderServerAnswer(arg, messages) {
-  let text = "";
-
-  switch (arg) {
-    case "1000":
-      text = messages[arg];
-      break;
-    case "1001":
-      text = messages[arg];
-      break;
-    case "1002":
-      text = messages[arg];
-      break;
-    default:
-      text = messages["default"];
-      break;
-  }
-
-  return (
-    <div className={arg === "1000" ? styles.success_text : styles.error_text}>
-      {text}
-      {arg === "1000" ? (
-        <NavLink
-          to={`/login`}
-          className={styles.login_navbar_link}
-          activeClassName={styles.login_navbar_link_active}
-        >
-          <FormattedMessage id="login.login" />
-        </NavLink>
-      ) : null}
-    </div>
   );
 }
 

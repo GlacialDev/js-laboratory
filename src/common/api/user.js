@@ -1,4 +1,4 @@
-exports.signUp = data => {
+exports.signUpRequest = data => {
   return fetch("/api/user/signup", {
     method: "POST",
     mode: "same-origin",
@@ -9,7 +9,7 @@ exports.signUp = data => {
   }).then(response => response.json());
 };
 
-exports.signIn = data => {
+exports.signInRequest = data => {
   return fetch("/api/user/signin", {
     method: "POST",
     mode: "same-origin",
@@ -20,7 +20,7 @@ exports.signIn = data => {
   }).then(response => response.json());
 };
 
-exports.signInJWT = token => {
+exports.signInJWTRequest = token => {
   return fetch("/api/user/signin_jwt", {
     method: "POST",
     mode: "same-origin",

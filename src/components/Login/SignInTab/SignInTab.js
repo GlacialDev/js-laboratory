@@ -3,7 +3,7 @@ import styles from "./SignInTab.module.scss";
 import { injectIntl, FormattedMessage } from "react-intl";
 import { Redirect } from "react-router";
 import { Formik, Field, Form } from "formik";
-import { signIn } from "../../../common/api/user";
+import { signInRequest } from "../../../common/api/user";
 import * as yup from "yup";
 import { ContextConsumer } from "../../../common/context/Context";
 
@@ -52,6 +52,36 @@ function SignInTab({ intl }) {
   });
   const [serverAnswerCode, setServerAnswerCode] = useState(0);
 
+  function renderServerAnswer(arg) {
+    let text = "";
+
+    switch (arg) {
+      case "1003":
+        text = signinErrorCodes[arg];
+        break;
+      case "1004":
+        text = signinErrorCodes[arg];
+        break;
+      default:
+        break;
+    }
+
+    return (
+      <div className={styles.error_text}>
+        {text}
+        {arg === "success" ? <Redirect to="/" /> : null}
+      </div>
+    );
+  }
+
+  function signIn(response, context) {
+    setServerAnswerCode(response.answer.code);
+    context.setNickname(response.answer.nickname);
+    context.setEmail(response.answer.email);
+    context.setIsAuth(response.answer.isAuth);
+    localStorage.token = response.token;
+  }
+
   return (
     <ContextConsumer>
       {context => (
@@ -64,12 +94,8 @@ function SignInTab({ intl }) {
           onSubmit={data => {
             signinSchema.isValid(data).then(valid => {
               if (valid) {
-                signIn(data).then(response => {
-                  setServerAnswerCode(response.answer.code);
-                  context.setNickname(response.answer.nickname);
-                  context.setEmail(response.answer.email);
-                  context.setIsAuth(response.answer.isAuth);
-                  localStorage.token = response.token;
+                signInRequest(data).then(response => {
+                  signIn(response, context);
                 });
               }
             });
@@ -79,9 +105,7 @@ function SignInTab({ intl }) {
               <div
                 className={serverAnswerCode === "success" ? null : styles.error}
               >
-                {serverAnswerCode
-                  ? renderServerAnswer(serverAnswerCode, signinErrorCodes)
-                  : null}
+                {serverAnswerCode ? renderServerAnswer(serverAnswerCode) : null}
               </div>
               {fields.map(({ type, placeholder, name }, index) => (
                 <React.Fragment key={index}>
@@ -108,28 +132,6 @@ function SignInTab({ intl }) {
         />
       )}
     </ContextConsumer>
-  );
-}
-
-function renderServerAnswer(arg, messages) {
-  let text = "";
-
-  switch (arg) {
-    case "1003":
-      text = messages[arg];
-      break;
-    case "1004":
-      text = messages[arg];
-      break;
-    default:
-      break;
-  }
-
-  return (
-    <div className={styles.error_text}>
-      {text}
-      {arg === "success" ? <Redirect to="/" /> : null}
-    </div>
   );
 }
 
