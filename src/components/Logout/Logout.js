@@ -13,7 +13,8 @@ function Logout({ intl }) {
   });
 
   function logout(context) {
-    localStorage.token = "";
+    localStorage.accessToken = "";
+    localStorage.refreshToken = "";
     context.setNickname("");
     context.setEmail("");
     context.setIsAuth(false);

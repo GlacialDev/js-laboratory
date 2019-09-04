@@ -10,6 +10,7 @@ const getDB = low(adapter);
 const signIn = require("./controllers/signInCtrl");
 const signUp = require("./controllers/signUpCtrl");
 const signInJWT = require("./controllers/signInJWTCtrl");
+const refreshToken = require("./controllers/refreshTokenCtrl");
 
 app.use(express.static(path.join(process.cwd(), "../", "build")));
 app.use(bodyParser.json());
@@ -22,9 +23,18 @@ getDB
   .then(db => {
     app.post("/api/user/signin", (req, res) => signIn(req, res, db));
     app.post("/api/user/signin_jwt", (req, res) =>
-      signInJWT(req, res, db).catch(err => res.send({ isAuth: false }))
+      signInJWT(req, res, db).catch(err => {
+        // idk what to send
+        res.send({ isAuth: false });
+      })
     );
     app.post("/api/user/signup", (req, res) => signUp(req, res, db));
+    app.post("/api/user/refresh_token", (req, res) =>
+      refreshToken(req, res, db).catch(err => {
+        // idk what to send
+        res.send({ isAuth: false });
+      })
+    );
   })
   .then(() => {
     app.listen(9000);

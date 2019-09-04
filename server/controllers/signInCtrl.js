@@ -33,7 +33,7 @@ const signIn = async (req, res, db) => {
       },
       process.env.JWT_PRIVATE_KEY,
       {
-        expiresIn: "1h"
+        expiresIn: "10s"
       }
     );
     const refreshToken = jwt.sign(
@@ -43,7 +43,7 @@ const signIn = async (req, res, db) => {
       },
       process.env.JWT_PRIVATE_KEY,
       {
-        expiresIn: "60d"
+        expiresIn: "1m"
       }
     );
     await utils.updateItemInDB(db, "users", { id: user.id }, { refreshToken });

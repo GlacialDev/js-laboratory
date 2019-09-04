@@ -15,40 +15,32 @@ import styles from "./App.module.scss";
 class App extends Component {
   componentDidMount() {
     const { context } = this.props;
-    // Клиент(фронтенд) проверяет перед запросом не истекло ли время жизни access token'на
     const { accessToken, refreshToken } = localStorage;
-    const decodedAccessToken = jwt_decode(accessToken);
-    const timeNow = new Date().getTime();
 
-    if (decodedAccessToken.exp < timeNow) {
-      // // Если истекло клиент отправляет на auth/refresh-token URL refresh token
-      // // https://gist.github.com/zmts/802dc9c3510d79fd40f9dc38a12bccfc
-      // // написать refreshAccessTokenRequest
-      // refreshAccessTokenRequest(refreshToken)
-      //   .then(response => {
-      //     // написать savenNewTokenPair
-      //     this.saveNewTokenPair(response);
-      //   })
-      //   .then(accessToken => {
-      //     signInJWTRequest(accessToken).then(response =>
-      //       this.signIn(response, context)
-      //     );
-      //   });
-    } else {
-      signInJWTRequest(accessToken).then(response =>
-        this.signIn(response, context)
-      );
+    if (accessToken && refreshToken) {
+      const decodedAccessToken = jwt_decode(accessToken);
+      let timeNow = new Date().getTime() / 1000;
+      let accessTokenLifetimeEnd = new Date(decodedAccessToken.exp).getTime();
+
+      if (accessTokenLifetimeEnd < timeNow) {
+        refreshAccessTokenRequest(refreshToken).then(response => {
+          this.saveNewTokenPair(response);
+          const { accessToken } = localStorage;
+          signInJWTRequest(accessToken).then(response => {
+            this.signIn(response, context);
+          });
+        });
+      } else {
+        signInJWTRequest(accessToken).then(response => {
+          this.signIn(response, context);
+        });
+      }
     }
+  }
 
-    // if (token && token !== "") {
-    //   var decoded = jwt_decode(token);
-    //   const date = new Date().getTime();
-    //   console.log(date);
-    //   console.log(decoded.exp);
-    // signInJWTRequest({ token }).then(response =>
-    //   this.signIn(response, context)
-    // );
-    // }
+  saveNewTokenPair(response) {
+    localStorage.accessToken = response.accessToken;
+    localStorage.refreshToken = response.refreshToken;
   }
 
   signIn(response, context) {
