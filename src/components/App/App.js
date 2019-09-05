@@ -25,8 +25,7 @@ class App extends Component {
       if (accessTokenLifetimeEnd < timeNow) {
         refreshAccessTokenRequest(refreshToken).then(response => {
           this.saveNewTokenPair(response);
-          const { accessToken } = localStorage;
-          signInJWTRequest(accessToken).then(response => {
+          signInJWTRequest(localStorage.accessToken).then(response => {
             this.signIn(response, context);
           });
         });

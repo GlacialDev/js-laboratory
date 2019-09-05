@@ -2,10 +2,7 @@ const utils = require("../utils/utils");
 const jwt = require("jsonwebtoken");
 
 const signInJWT = async (req, res, db) => {
-  // console.log("signInJWT");
-  // console.log(req.body.accessToken);
   const data = jwt.verify(req.body.accessToken, process.env.JWT_PRIVATE_KEY);
-  // console.log("after jwt.verify");
   const user = await utils.getValueFromDB(db, "users", { id: data.id });
   const answer = {
     nickname: "",

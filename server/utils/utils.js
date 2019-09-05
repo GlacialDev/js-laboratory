@@ -1,5 +1,6 @@
 const uuidv4 = require("uuid/v4");
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 
 const getValueFromDB = async (db, collection, paramObj) => {
   let value = await db
@@ -46,11 +47,38 @@ const comparePasswords = (password, hash) => {
   });
 };
 
+const getNewAccessToken = user => {
+  return jwt.sign(
+    {
+      nickname: user.nickname,
+      id: user.id
+    },
+    process.env.JWT_PRIVATE_KEY,
+    {
+      expiresIn: "10m"
+    }
+  );
+};
+const getNewRefreshToken = user => {
+  return jwt.sign(
+    {
+      nickname: user.nickname,
+      id: user.id
+    },
+    process.env.JWT_PRIVATE_KEY,
+    {
+      expiresIn: "30d"
+    }
+  );
+};
+
 module.exports = {
   getValueFromDB,
   pushValueIntoDB,
   updateItemInDB,
   getHash,
   comparePasswords,
+  getNewAccessToken,
+  getNewRefreshToken,
   getId
 };
