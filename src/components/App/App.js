@@ -38,8 +38,8 @@ class App extends Component {
   }
 
   saveNewTokenPair(response) {
-    localStorage.accessToken = response.accessToken;
-    localStorage.refreshToken = response.refreshToken;
+    localStorage.accessToken = response.answer.accessToken;
+    localStorage.refreshToken = response.answer.refreshToken;
   }
 
   signIn(response, context) {
