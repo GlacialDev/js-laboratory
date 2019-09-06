@@ -16,7 +16,7 @@ const signIn = async (req, res, db) => {
     return;
   }
 
-  let isValidPassword = await utils.comparePasswords(password, user.hash);
+  const isValidPassword = await utils.comparePasswords(password, user.hash);
   if (!isValidPassword) {
     answer.code = "1004";
     res.send({ answer });
@@ -27,7 +27,14 @@ const signIn = async (req, res, db) => {
     answer.isAuth = true;
     const refreshToken = utils.getNewRefreshToken(user);
     const accessToken = utils.getNewAccessToken(user);
-    await utils.updateItemInDB(db, "users", { id: user.id }, { refreshToken });
+    let refreshTokensMap = user.refreshTokensMap;
+    refreshTokensMap.push(refreshToken);
+    await utils.updateItemInDB(
+      db,
+      "users",
+      { id: user.id },
+      { refreshTokensMap }
+    );
 
     res.send({ answer, accessToken, refreshToken });
   }

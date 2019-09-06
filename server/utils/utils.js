@@ -55,7 +55,7 @@ const getNewAccessToken = user => {
     },
     process.env.JWT_PRIVATE_KEY,
     {
-      expiresIn: "10m"
+      expiresIn: "5s"
     }
   );
 };
@@ -67,9 +67,25 @@ const getNewRefreshToken = user => {
     },
     process.env.JWT_PRIVATE_KEY,
     {
-      expiresIn: "30d"
+      expiresIn: "10s"
     }
   );
+};
+
+const decodeJWT = jwt => {
+  const [headerB64, payloadB64] = jwt.split(".");
+  const headerStr = base64UrlDecode(headerB64);
+  const payloadStr = base64UrlDecode(payloadB64);
+  return {
+    header: JSON.parse(headerStr),
+    payload: JSON.parse(payloadStr)
+  };
+};
+
+const base64UrlDecode = data => {
+  let buff = Buffer.from(data, "base64");
+  let text = buff.toString("ascii");
+  return text;
 };
 
 module.exports = {
@@ -80,5 +96,6 @@ module.exports = {
   comparePasswords,
   getNewAccessToken,
   getNewRefreshToken,
+  decodeJWT,
   getId
 };
