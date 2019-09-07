@@ -55,7 +55,7 @@ const getNewAccessToken = user => {
     },
     process.env.JWT_PRIVATE_KEY,
     {
-      expiresIn: "5s"
+      expiresIn: "10m"
     }
   );
 };
@@ -67,7 +67,7 @@ const getNewRefreshToken = user => {
     },
     process.env.JWT_PRIVATE_KEY,
     {
-      expiresIn: "10s"
+      expiresIn: "30d"
     }
   );
 };

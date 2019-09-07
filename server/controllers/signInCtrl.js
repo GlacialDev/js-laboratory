@@ -12,14 +12,16 @@ const signIn = async (req, res, db) => {
 
   if (!user) {
     answer.code = "1003";
-    res.send({ answer });
+    res.status(404);
+    res.send({ answer, err: null });
     return;
   }
 
   const isValidPassword = await utils.comparePasswords(password, user.hash);
   if (!isValidPassword) {
     answer.code = "1004";
-    res.send({ answer });
+    res.status(401);
+    res.send({ answer, err: null });
   } else {
     answer.code = "success";
     answer.nickname = user.nickname;
@@ -36,7 +38,8 @@ const signIn = async (req, res, db) => {
       { refreshTokensMap }
     );
 
-    res.send({ answer, accessToken, refreshToken });
+    res.status(200);
+    res.send({ answer, accessToken, refreshToken, err: null });
   }
 };
 

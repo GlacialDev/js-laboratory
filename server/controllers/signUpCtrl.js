@@ -28,7 +28,8 @@ const signUp = async (req, res, db) => {
     answer.code = "1000";
   }
 
-  res.send({ answer });
+  res.status(200);
+  res.send({ answer, err: null });
 };
 
 module.exports = signUp;
