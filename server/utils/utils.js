@@ -1,6 +1,6 @@
 const uuidv4 = require("uuid/v4");
 const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
+// const jwt = require("jsonwebtoken");
 
 const getValueFromDB = async (db, collection, paramObj) => {
   let value = await db
@@ -47,46 +47,46 @@ const comparePasswords = (password, hash) => {
   });
 };
 
-const getNewAccessToken = user => {
-  return jwt.sign(
-    {
-      nickname: user.nickname,
-      id: user.id
-    },
-    process.env.JWT_PRIVATE_KEY,
-    {
-      expiresIn: "10m"
-    }
-  );
-};
-const getNewRefreshToken = user => {
-  return jwt.sign(
-    {
-      nickname: user.nickname,
-      id: user.id
-    },
-    process.env.JWT_PRIVATE_KEY,
-    {
-      expiresIn: "30d"
-    }
-  );
-};
+// const getNewAccessToken = user => {
+//   return jwt.sign(
+//     {
+//       nickname: user.nickname,
+//       id: user.id
+//     },
+//     process.env.JWT_PRIVATE_KEY,
+//     {
+//       expiresIn: "10m"
+//     }
+//   );
+// };
+// const getNewRefreshToken = user => {
+//   return jwt.sign(
+//     {
+//       nickname: user.nickname,
+//       id: user.id
+//     },
+//     process.env.JWT_PRIVATE_KEY,
+//     {
+//       expiresIn: "30d"
+//     }
+//   );
+// };
 
-const decodeJWT = jwt => {
-  const [headerB64, payloadB64] = jwt.split(".");
-  const headerStr = base64UrlDecode(headerB64);
-  const payloadStr = base64UrlDecode(payloadB64);
-  return {
-    header: JSON.parse(headerStr),
-    payload: JSON.parse(payloadStr)
-  };
-};
+// const decodeJWT = jwt => {
+//   const [headerB64, payloadB64] = jwt.split(".");
+//   const headerStr = base64UrlDecode(headerB64);
+//   const payloadStr = base64UrlDecode(payloadB64);
+//   return {
+//     header: JSON.parse(headerStr),
+//     payload: JSON.parse(payloadStr)
+//   };
+// };
 
-const base64UrlDecode = data => {
-  let buff = Buffer.from(data, "base64");
-  let text = buff.toString("ascii");
-  return text;
-};
+// const base64UrlDecode = data => {
+//   let buff = Buffer.from(data, "base64");
+//   let text = buff.toString("ascii");
+//   return text;
+// };
 
 module.exports = {
   getValueFromDB,
@@ -94,8 +94,8 @@ module.exports = {
   updateItemInDB,
   getHash,
   comparePasswords,
-  getNewAccessToken,
-  getNewRefreshToken,
-  decodeJWT,
+  // getNewAccessToken,
+  // getNewRefreshToken,
+  // decodeJWT,
   getId
 };

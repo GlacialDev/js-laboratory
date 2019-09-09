@@ -1,4 +1,6 @@
 const utils = require("../utils/utils");
+// const passport = require("passport");
+// const LocalStrategy = require("passport-local").Strategy;
 
 const signIn = async (req, res, db) => {
   const { nickname, password } = req.body;
@@ -27,19 +29,11 @@ const signIn = async (req, res, db) => {
     answer.nickname = user.nickname;
     answer.email = user.email;
     answer.isAuth = true;
-    const refreshToken = utils.getNewRefreshToken(user);
-    const accessToken = utils.getNewAccessToken(user);
-    let refreshTokensMap = user.refreshTokensMap;
-    refreshTokensMap.push(refreshToken);
-    await utils.updateItemInDB(
-      db,
-      "users",
-      { id: user.id },
-      { refreshTokensMap }
-    );
+
+    await utils.updateItemInDB(db, "users", { id: user.id });
 
     res.status(200);
-    res.send({ answer, accessToken, refreshToken, err: null });
+    res.send({ answer, err: null });
   }
 };
 
