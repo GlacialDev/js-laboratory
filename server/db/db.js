@@ -13,14 +13,13 @@ let models = {};
 
 const init = app => {
   // добавляем модели в mongoose
-  const schemaList = fs.readdirSync(modelsDirectory);
-  for (const schema of schemaList) {
-    const modelName = path.basename(schema, ".js");
+  const modelsList = fs.readdirSync(modelsDirectory);
+  for (const model of modelsList) {
+    const modelName = path.basename(model, ".js");
     models[modelName] = require(path.join(modelsDirectory, modelName))(
       mongoose
     );
   }
-  // console.log("Models loaded");
 
   // добавляем роуты в app
   const routesList = fs.readdirSync(routesDirectory);
@@ -28,13 +27,17 @@ const init = app => {
     const fileName = path.basename(route, ".js");
     require(path.join(routesDirectory, fileName))(app);
   }
-  // console.log("Routes loaded");
 
   // инициализируем подключение к базе данных
-  const db = mongoose.createConnection(url, { useNewUrlParser: true });
-  db.on("connected", () => console.log("Connected succesfully to url: " + url));
-  db.on("disconnected", () => console.log("Connection disconnected"));
-  db.on("error", err => console.log(err));
+  mongoose.connect(url, {
+    useNewUrlParser: true,
+    useCreateIndex: true
+  });
+  const conn = mongoose.connection;
+  conn.on("open", () => console.log("Open connection: " + url));
+  conn.on("connected", () => console.log("Connected: " + url));
+  conn.on("disconnected", () => console.log("Disconnected: " + url));
+  conn.on("error", err => console.error("Error: " + err));
 };
 
 const model = name => {

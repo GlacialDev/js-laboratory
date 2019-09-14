@@ -1,9 +1,9 @@
 const handlers = require("../handlers/User");
 
 module.exports = app => {
-  app.get("/user", handlers.list);
-  app.get("/user/:id", handlers.get);
-  app.post("/user", handlers.create);
-  app.put("/user/:id", handlers.update);
-  app.delete("/user/:id", handlers.remove);
+  app.get("/api/user", handlers.list);
+  app.get("/api/user/:id", handlers.get);
+  app.post("/api/user", handlers.create);
+  app.put("/api/user/:id", handlers.update);
+  app.delete("/api/user/:id", handlers.remove);
 };

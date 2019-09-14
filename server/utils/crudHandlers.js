@@ -64,7 +64,7 @@ module.exports = modelName => {
       res.send(400);
     }
 
-    db.model(modelName).remove({ _id: id }, (err, data) => {
+    db.model(modelName).deleteOne({ _id: id }, (err, data) => {
       if (err) next(err);
       res.send(data ? req.params.id : 404);
     });

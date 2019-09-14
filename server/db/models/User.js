@@ -1,7 +1,7 @@
 const path = require("path");
-const UserSchema = require("../shemas/User");
 
+// Инициализируем модель с именем файла, в котором она находится
 module.exports = mongoose => {
-  // Инициализируем модель с именем файла, в котором она находится
-  return mongoose.model(path.basename(module.filename, ".js"), UserSchema);
+  const schema = require("../shemas/User")(mongoose);
+  return mongoose.model(path.basename(module.filename, ".js"), schema);
 };

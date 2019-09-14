@@ -5,7 +5,6 @@ const app = express();
 // const session = require("express-session");
 const bodyParser = require("body-parser");
 const db = require("./db/db");
-db.init(app);
 
 app.use(express.static(path.join(process.cwd(), "../", "build")));
 app.use(bodyParser.json());
@@ -18,6 +17,8 @@ app.use(bodyParser.json());
 //     secret: process.env.SESSION_SECRET
 //   })
 // );
+
+db.init(app);
 
 app.get("/*", (req, res) => {
   res.sendFile(path.join(process.cwd(), "../", "build", "index.html"));
