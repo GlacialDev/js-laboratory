@@ -54,15 +54,18 @@ module.exports = mongoose => {
     });
 
   User.methods = {
-    authenticate: plainPassword => {
-      return bcrypt.compareSync(plainPassword, this.hash);
-    },
     encryptPassword: password => {
       if (!password) return "";
 
       const salt = bcrypt.genSaltSync(10);
       const hash = bcrypt.hashSync(password, salt);
       return hash;
+    }
+  };
+
+  User.statics = {
+    authenticate: (user, password) => {
+      return bcrypt.compareSync(password, user.hash);
     }
   };
 

@@ -1,6 +1,8 @@
 const fs = require("fs");
 const path = require("path");
 const mongoose = require("mongoose");
+const session = require("express-session");
+const MongoStore = require("connect-mongo")(session);
 const username = process.env.DB_USERNAME;
 const password = process.env.DB_PASSWORD;
 const host = process.env.DB_HOST;
@@ -38,6 +40,20 @@ const init = app => {
   conn.on("connected", () => console.log("Connected: " + url));
   conn.on("disconnected", () => console.log("Disconnected: " + url));
   conn.on("error", err => console.error("Error: " + err));
+
+  // инициализируем запись сессий в базу данных
+  app.use(
+    session({
+      cookie: { maxAge: 60 * 1000 },
+      store: new MongoStore({
+        mongooseConnection: conn,
+        checkPeriod: 60 * 1000
+      }),
+      secret: process.env.SESSION_SECRET,
+      saveUninitialized: false,
+      resave: false
+    })
+  );
 };
 
 const model = name => {
