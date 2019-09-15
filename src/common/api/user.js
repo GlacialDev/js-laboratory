@@ -10,8 +10,8 @@ exports.signUpRequest = data => {
 };
 
 exports.signInRequest = data => {
-  return fetch("/api/user", {
-    method: "GET",
+  return fetch("/api/user/authenticate", {
+    method: "POST",
     mode: "same-origin",
     headers: {
       "Content-Type": "application/json"
