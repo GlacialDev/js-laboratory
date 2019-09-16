@@ -75,10 +75,10 @@ function SignInTab({ intl }) {
   }
 
   function signIn(response, context) {
-    setServerAnswerCode(response.answer.code);
-    context.setNickname(response.answer.nickname);
-    context.setEmail(response.answer.email);
-    context.setIsAuth(response.answer.isAuth);
+    setServerAnswerCode(response.code);
+    context.setNickname(response.data.nickname);
+    context.setEmail(response.data.email);
+    context.setIsAuth(response.data.isAuth);
     localStorage.accessToken = response.accessToken;
     localStorage.refreshToken = response.refreshToken;
   }

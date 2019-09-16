@@ -5,10 +5,10 @@ module.exports = app => {
   app.get("/api/user", handlers.list);
   app.get("/api/user/:id", handlers.get);
   app.post("/api/user", handlers.create);
-  app.post(
-    "/api/user/authenticate",
-    passport.authenticate("local"),
-    handlers.authenticate
+  app.post("/api/user/authenticate", (req, res, next) =>
+    passport.authenticate("local", (err, user, next) => {
+      handlers.authenticate(req, res, err, user);
+    })(req, res, next)
   );
   app.put("/api/user/:id", handlers.update);
   app.delete("/api/user/:id", handlers.remove);

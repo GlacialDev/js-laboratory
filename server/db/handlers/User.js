@@ -16,20 +16,16 @@ passport.use(
         .findOne({ nickname })
         .then(user => {
           if (!user) {
-            console.log("nickname doesn't exist");
-            return done(null, false, {
-              errors: { nickname: "nickname doesn't exist" }
-            });
+            // nickname doesn't exist;
+            return done({ code: "1003" }, false);
           }
 
           const isValidPassword = db
             .model(modelName)
             .authenticate(user, password);
           if (!isValidPassword) {
-            console.log("password is invalid");
-            return done(null, false, {
-              errors: { password: "password is invalid" }
-            });
+            // password is invalid;
+            return done({ code: "1004" }, false);
           }
 
           passport.serializeUser(function(user, done) {
@@ -46,9 +42,18 @@ passport.use(
   )
 );
 
-const authenticate = (req, res, next) => {
-  console.log(req.session.passport.user);
-  console.log(req.user);
+const authenticate = (req, res, err, user) => {
+  if (err) {
+    res.status(401);
+    res.send({ data: null, code: err.code });
+  }
+  if (user) {
+    res.status(200);
+    res.send({
+      data: { nickname: user.nickname, email: user.email, isAuth: true },
+      code: "success"
+    });
+  }
 };
 
 module.exports = { ...handlers, authenticate };
