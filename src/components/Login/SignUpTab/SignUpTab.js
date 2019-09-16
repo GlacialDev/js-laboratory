@@ -150,7 +150,7 @@ function SignUpTab({ intl }) {
         signupSchema.isValid(data).then(valid => {
           if (valid) {
             signUpRequest(data).then(response => {
-              setServerAnswerCode(response.answer.code);
+              setServerAnswerCode(response.code);
             });
           }
         });

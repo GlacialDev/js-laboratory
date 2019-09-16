@@ -4,6 +4,8 @@ const db = require("../db");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 
+const { list, get, update, remove } = handlers;
+
 passport.use(
   new LocalStrategy(
     {
@@ -56,4 +58,40 @@ const authenticate = (req, res, err, user) => {
   }
 };
 
-module.exports = { ...handlers, authenticate };
+const create = (req, res, next) => {
+  // if user exist, send error code
+  db.model(modelName)
+    .findOne({
+      $or: [{ nickname: req.body.nickname }, { email: req.body.email }]
+    })
+    .then(user => {
+      if (user.nickname === req.body.nickname) {
+        res.status(302);
+        res.send({
+          code: "1001"
+        });
+      } else if (user.email === req.body.email) {
+        res.status(302);
+        res.send({
+          code: "1002"
+        });
+      } else {
+        res.status(500);
+        res.send({
+          code: "1000"
+        });
+      }
+    })
+    // if user doesn't exist, register new user
+    .catch(err => {
+      db.model(modelName).create(req.body, (err, data) => {
+        if (err) {
+          next(err);
+        }
+        res.status(201);
+        res.send({ code: "1000" });
+      });
+    });
+};
+
+module.exports = { list, get, update, remove, create, authenticate };
