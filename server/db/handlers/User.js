@@ -13,7 +13,6 @@ passport.use(
       passwordField: "password"
     },
     (nickname, password, done) => {
-      console.log(nickname, password);
       db.model(modelName)
         .findOne({ nickname })
         .then(user => {
@@ -30,13 +29,6 @@ passport.use(
             return done({ code: "1004" }, false);
           }
 
-          passport.serializeUser(function(user, done) {
-            done(null, user.nickname);
-          });
-          passport.deserializeUser(function(id, done) {
-            done(null, user);
-          });
-
           return done(null, user);
         })
         .catch(done);
@@ -44,16 +36,30 @@ passport.use(
   )
 );
 
+passport.serializeUser(function(user, done) {
+  console.log("serializeUser");
+  done(null, user);
+});
+passport.deserializeUser(function(user, done) {
+  console.log("deserializeUser");
+  db.model(modelName)
+    .findOne({ nickname: user.nickname })
+    .then(user => done(null, user));
+});
+
 const authenticate = (req, res, err, user) => {
   if (err) {
     res.status(401);
     res.send({ data: null, code: err.code });
   }
   if (user) {
-    res.status(200);
-    res.send({
-      data: { nickname: user.nickname, email: user.email, isAuth: true },
-      code: "success"
+    // console.log(user);
+    req.login(user, () => {
+      res.status(200);
+      res.send({
+        data: { nickname: user.nickname, email: user.email, isAuth: true },
+        code: "success"
+      });
     });
   }
 };
@@ -78,7 +84,7 @@ const create = (req, res, next) => {
       } else {
         res.status(500);
         res.send({
-          code: "1000"
+          code: "internal error"
         });
       }
     })
@@ -94,4 +100,38 @@ const create = (req, res, next) => {
     });
 };
 
-module.exports = { list, get, update, remove, create, authenticate };
+const logout = (req, res, next) => {
+  req.logout();
+  res.redirect("/login");
+};
+
+const sessionAuthenticate = (req, res, next) => {
+  if (req.session.passport) {
+    db.model(modelName)
+      .findOne({ nickname: req.session.passport.user.nickname })
+      .then(user => {
+        res.status(200);
+        res.send({
+          data: { nickname: user.nickname, email: user.email, isAuth: true },
+          code: "success"
+        });
+      });
+  } else {
+    res.status(200);
+    res.send({
+      data: { nickname: "", email: "", isAuth: false },
+      code: "unauthorized"
+    });
+  }
+};
+
+module.exports = {
+  list,
+  get,
+  update,
+  remove,
+  create,
+  logout,
+  authenticate,
+  sessionAuthenticate
+};

@@ -3,6 +3,7 @@ const path = require("path");
 const mongoose = require("mongoose");
 const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
+const passport = require("passport");
 const username = process.env.DB_USERNAME;
 const password = process.env.DB_PASSWORD;
 const host = process.env.DB_HOST;
@@ -23,13 +24,6 @@ const init = app => {
     );
   }
 
-  // добавляем роуты в app
-  const routesList = fs.readdirSync(routesDirectory);
-  for (const route of routesList) {
-    const fileName = path.basename(route, ".js");
-    require(path.join(routesDirectory, fileName))(app);
-  }
-
   // инициализируем подключение к базе данных
   mongoose.connect(url, {
     useNewUrlParser: true,
@@ -44,16 +38,25 @@ const init = app => {
   // инициализируем запись сессий в базу данных
   app.use(
     session({
-      cookie: { maxAge: 60 * 1000 },
+      cookie: { secure: false, maxAge: 60 * 60 * 1000 },
       store: new MongoStore({
         mongooseConnection: conn,
-        checkPeriod: 60 * 1000
+        checkPeriod: 60 * 60 * 1000
       }),
       secret: process.env.SESSION_SECRET,
       saveUninitialized: false,
       resave: false
     })
   );
+  app.use(passport.initialize());
+  app.use(passport.session());
+
+  // добавляем роуты в app (в самом конце, т.к. иначе не применятся мидлвэры вроде сессий)
+  const routesList = fs.readdirSync(routesDirectory);
+  for (const route of routesList) {
+    const fileName = path.basename(route, ".js");
+    require(path.join(routesDirectory, fileName))(app);
+  }
 };
 
 const model = name => {

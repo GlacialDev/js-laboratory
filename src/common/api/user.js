@@ -19,3 +19,17 @@ exports.signInRequest = data => {
     body: JSON.stringify(data)
   }).then(response => response.json());
 };
+
+exports.autoSignInRequest = () => {
+  return fetch("/api/user/session_authenticate", {
+    method: "GET",
+    mode: "same-origin"
+  }).then(response => response.json());
+};
+
+exports.logOutRequest = () => {
+  return fetch("/api/user/logout", {
+    method: "GET",
+    mode: "same-origin"
+  });
+};

@@ -3,6 +3,7 @@ import styles from "./Logout.module.scss";
 import { ContextConsumer } from "../../common/context/Context";
 import { Redirect } from "react-router-dom";
 import { injectIntl } from "react-intl";
+import { logOutRequest } from "../../common/api/user";
 
 function Logout({ intl }) {
   const textAuthorizedAs = intl.formatMessage({
@@ -13,8 +14,6 @@ function Logout({ intl }) {
   });
 
   function logout(context) {
-    localStorage.accessToken = "";
-    localStorage.refreshToken = "";
     context.setNickname("");
     context.setEmail("");
     context.setIsAuth(false);
@@ -32,7 +31,7 @@ function Logout({ intl }) {
               <button
                 type="button"
                 className={styles.logout_button}
-                onClick={() => logout(context)}
+                onClick={() => logOutRequest().then(() => logout(context))}
               >
                 {textWantToLogout}
               </button>
