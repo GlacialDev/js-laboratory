@@ -37,11 +37,9 @@ passport.use(
 );
 
 passport.serializeUser(function(user, done) {
-  console.log("serializeUser");
   done(null, user);
 });
 passport.deserializeUser(function(user, done) {
-  console.log("deserializeUser");
   db.model(modelName)
     .findOne({ nickname: user.nickname })
     .then(user => done(null, user));
@@ -53,7 +51,6 @@ const authenticate = (req, res, err, user) => {
     res.send({ data: null, code: err.code });
   }
   if (user) {
-    // console.log(user);
     req.login(user, () => {
       res.status(200);
       res.send({

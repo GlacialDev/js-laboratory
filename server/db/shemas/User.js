@@ -25,16 +25,6 @@ module.exports = mongoose => {
         message: "Invalid email"
       })
     },
-    // password: {
-    //   type: String,
-    //   required: true,
-    //   validate: validate({
-    //     validator: "isLength",
-    //     arguments: [8, 30],
-    //     message:
-    //       "Password length should be between {ARGS[0]} and {ARGS[1]} symbols"
-    //   })
-    // },
     hash: {
       type: String,
       required: true
